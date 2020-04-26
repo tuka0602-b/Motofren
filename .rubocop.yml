@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop-airbnb.yml
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'config.ru'
+    - 'bin/**'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'docs/**'
+    - 'lib/**'
+    - 'public/**'
+    - 'vendor/**/*'
