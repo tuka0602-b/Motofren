@@ -7,6 +7,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback
   end
 
+  def google_oauth2
+    callback
+  end
+
   def failure
     redirect_to root_path
   end
@@ -18,7 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.save
       sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
-      set_flash_message(:notice, :success, kind: "Twitter") if is_navigational_format?
+      set_flash_message(:notice, :success, kind: "#{@user.provider}") if is_navigational_format?
     else
       set_flash_message(
         :alert, :failure, 
