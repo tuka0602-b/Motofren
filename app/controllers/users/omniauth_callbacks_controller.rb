@@ -25,7 +25,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         kind: "#{@user.provider}", reason: "「#{@user.email}」は既に別のアカウントで使用されています"
       )
       # 後でサインアップ画面にセッション情報を載せることを検討すべし
-      session["devise.user_attirbutes"] = request.env["omniauth.auth"]
+      # except("extra")でtwiiterからのレスポンスデータを制限し、CookieOverflowが発生しないようにしている
+      session["devise.user_attirbutes"] = request.env["omniauth.auth"].except("extra") 
       redirect_to new_user_registration_url
     end
   end
