@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     # Omniauth認証するたびに認証先ユーザー情報（名前など）が取得される。
-    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    user = find_or_initialize_by(provider: auth.provider, email: auth.info.email)
     user.email = auth.info.email
     user.password = Devise.friendly_token[0, 20]
     user.name = auth.info.name
