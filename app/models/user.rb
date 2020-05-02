@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
+         :omniauthable, omniauth_providers: %i(facebook twitter google_oauth2)
+
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :email, length: { maximum: 255 }
 
   def self.from_omniauth(auth)
     # Omniauth認証するたびに認証先ユーザー情報（名前など）が取得される。
