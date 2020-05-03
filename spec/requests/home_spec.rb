@@ -18,6 +18,7 @@ RSpec.describe "Home", type: :request do
 
     context "ログイン済みの場合" do
       let(:user) { create(:user) }
+
       before do
         sign_in user
         get root_path
