@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
-  
+
   context "ユーザーが有効な状態になる" do
     it "ユーザー名、メールアドレス、パスワードがある" do
       expect(user).to be_valid
