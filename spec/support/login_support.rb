@@ -1,3 +1,4 @@
+# deviseのsign_inメソッドがsystem, requestスペックで使えるなら、このファイルは不要
 # module LoginSupport
 #   def sign_in_as(user)
 #     visit new_user_session_path
