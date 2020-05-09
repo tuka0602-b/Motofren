@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
     it "ユーザー名、メールアドレス、パスワードがある" do
       expect(user).to be_valid
     end
+
     it "有効な型のメールアドレスである" do
       valid_addresses = %w(
         user@example.com USER@foo.COM A_US-ER@foo.bar.org

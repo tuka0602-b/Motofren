@@ -64,5 +64,5 @@ RSpec.configure do |config|
   # FactoryBotを打たなくてもデータをcreateできるようになる
   config.include FactoryBot::Syntax::Methods
 
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers
 end
