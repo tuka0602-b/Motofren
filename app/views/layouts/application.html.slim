@@ -8,27 +8,8 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand.mb-0.h1 Motofren
-      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-        span.navbar-toggler-icon
-      .collapse.navbar-collapse#navbarNav
-        ul.navbar-nav
-          - if user_signed_in?
-            li.nav-item
-              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link"
-          - else
-            li.nav-item
-              = link_to 'サインアップ', new_user_registration_path, class: "nav-link"
-            li.nav-item
-              = link_to 'ログイン', new_user_session_path, class: "nav-link"
-            li.nav-item
-              = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, class: "nav-link"
-            li.nav-item
-              = link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, class: "nav-link"
-            li.nav-item
-              = link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, class: "nav-link"
-    .container
-      p.notice = notice
-      p.alert = alert
-      = yield
+    = render 'layouts/header'
+    p.notice = notice
+    p.alert = alert
+    = yield
+    = render 'layouts/footer'
