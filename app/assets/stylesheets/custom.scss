@@ -41,3 +41,19 @@ footer {
 footer p {
   margin-bottom: .25rem;
 }
+
+//////////////////// TOP ////////////////////////
+.top-image {
+  background-image: url("motofren-60.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  max-height: 650px;
+}
+
+.top-message {
+  font-size: 4rem;
+  font-weight: 500;
+  font-family: -webkit-pictograph;
+}

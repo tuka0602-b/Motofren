@@ -6,22 +6,21 @@ header
           h4.text-dark
             | About
           p.text-muted
-            | Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.
+            | ポートフォリオとして製作しました。
+            | バイクで気軽に出かけたり、自慢し合える繋がりができればと思い機能を実装しました。また、このサイトを通じて、観光経済に貢献できれば尚嬉しいです。
         .col-sm-4.offset-md-1.py-4
           h4.text-dark
-            | Contact
+            = link_to "会員登録", "#", class: "btn btn-outline-secondary"
           ul.list-unstyled
             li
-              a.text-dark[href="#"]
-                | Follow on Twitter
+              = link_to "Facebookでログイン", "#", class: "text-dark"
             li
-              a.text-dark[href="#"]
-                | Like on Facebook
+              = link_to "Twitterでログイン", "#", class: "text-dark"
             li
-              a.text-dark[href="#"]
-                | Email me
+              = link_to "Googleでログイン", "#", class: "text-dark"
+
   .navbar.navbar-light.bg-light.shadow-sm
     .container.d-flex.justify-content-between
-      = link_to image_tag('motofren.png', id: 'sitelogo'), root_path, class: 'navbar-brand d-flex align-items-center'
+      = link_to image_tag("motofren.png", id: "sitelogo"), root_path, class: "navbar-brand d-flex align-items-center"
       button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"]
         span.navbar-toggler-icon
