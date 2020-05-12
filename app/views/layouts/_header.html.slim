@@ -9,18 +9,20 @@ header
             | ポートフォリオとして製作しました。
             | バイクで気軽に出かけたり、自慢し合える繋がりができればと思い機能を実装しました。また、このサイトを通じて、観光経済に貢献できれば尚嬉しいです。
         .col-sm-4.offset-md-1.py-4
+          button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter"
+            | 新規登録
           h4.text-dark
-            = link_to "会員登録", "#", class: "btn btn-outline-secondary"
-          ul.list-unstyled
-            li
-              = link_to "Facebookでログイン", "#", class: "text-dark"
-            li
-              = link_to "Twitterでログイン", "#", class: "text-dark"
-            li
-              = link_to "Googleでログイン", "#", class: "text-dark"
+            = link_to "ログイン", "#", class: "btn btn-outline-info"
+          / ul.list-unstyled
+          /   li
+          /     = link_to "Facebookでログイン", "#", class: "text-dark"
+          /   li
+          /     = link_to "Twitterでログイン", "#", class: "text-dark"
+          /   li
+          /     = link_to "Googleでログイン", "#", class: "text-dark"
 
   .navbar.navbar-light.bg-light.shadow-sm
     .container.d-flex.justify-content-between
-      = link_to image_tag("motofren.png", id: "sitelogo"), root_path, class: "navbar-brand d-flex align-items-center"
+      = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand d-flex align-items-center"
       button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"]
         span.navbar-toggler-icon
