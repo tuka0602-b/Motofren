@@ -81,3 +81,26 @@ footer {
 .form-signin input[type="password"] {
   margin-bottom: 10px;
 }
+.social-btn {
+  border-radius: 5px;
+  padding: 7px;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+.facebook {
+  background-color: #3B5998;
+  border-color: #3B5998;
+  color: white;
+}
+.twitter {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+  color: white;
+}
+.google {
+  background-color: #DB4437;
+  border-color: #DB4437;
+  color: white;
+}

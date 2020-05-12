@@ -18,13 +18,13 @@
           = f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード(確認)'
         .form-group
           = f.submit class: 'btn btn-lg btn-primary btn-block'
-        p.mt-5.mb-3.text-muted
-          | © 2017-{{ site.time | date: "%Y" }}
-        hr.container.mt-4
+        p.mt-4.mb-2.text-muted
+          | または
+        hr.container
         .my-4.text-center
-          button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalCSS"<i class="fab fa-css3-alt fa-fw" aria-hidden="true"></i>CSSの設定
-          button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-html5 fa-fw" aria-hidden="true"></i>HTMLの設定
-          button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-html5 fa-fw" aria-hidden="true"></i>HTMLの設定
+          button type="button" class="social-btn facebook mb-2" data-toggle="modal" data-target="#ModalCSS"<i class="fab fa-facebook-f fa-fw" aria-hidden="true"></i>Facebookでログイン
+          button type="button" class="social-btn twitter mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-twitter fa-fw" aria-hidden="true"></i>Twitterでログイン
+          button type="button" class="social-btn google mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-google fa-fw" aria-hidden="true"></i>Googleでログイン
         
 
       / form.form-signin.text-center
