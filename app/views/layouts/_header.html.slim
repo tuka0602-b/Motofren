@@ -7,12 +7,12 @@ header
             | About
           p.text-muted
             | ポートフォリオとして製作しました。
-            | バイクで気軽に出かけたり、自慢し合える繋がりができればと思い機能を実装しました。また、このサイトを通じて、観光経済に貢献できれば尚嬉しいです。
+              バイクで気軽に出かけたり、自慢し合える繋がりができればと思い機能を実装しました。また、このサイトを通じて、観光経済に貢献できれば尚嬉しいです。
         .col-sm-4.offset-md-1.py-4
-          button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter"
+          button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#signup-modal"
             | 新規登録
-          h4.text-dark
-            = link_to "ログイン", "#", class: "btn btn-outline-info"
+          button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#login-modal"
+            | ログイン
 
   .navbar.navbar-light.bg-light.shadow-sm
     .container.d-flex.justify-content-between
