@@ -1,0 +1,27 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand"
+    button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse
+      = render 'layouts/flash'
+      ul.navbar-nav.ml-auto
+        - if user_signed_in?
+          li.nav-item.mr-2
+            = link_to "ホーム", root_path, class: "nav-link"
+          li.nav-item.dropdown.mr-2
+            a#dropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              | Dropdown
+            .dropdown-menu aria-labelledby="dropdown"
+              = link_to "アカウント設定", edit_user_registration_path, class: "dropdown-item"
+              = link_to "フォロワー", "#", class: "dropdown-item"
+              = link_to "ログアウト", destroy_user_session_path, method: "delete", class: "dropdown-item"
+          form.form-inline.my-2.my-md-0
+            input.form-control type="text" placeholder="Search" aria-label="Search"
+        - else
+          li.nav-item.mr-2
+            button type="button" class="btn btn-light" data-toggle="modal" data-target="#signup-modal"
+              | 新規登録
+          li.nav-item.mr-3
+            button type="button" class="btn btn-light" data-toggle="modal" data-target="#login-modal"
+              | ログイン
