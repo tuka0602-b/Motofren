@@ -55,37 +55,39 @@ footer {
   font-family: -webkit-pictograph;
 }
 
-///////////////// SIGNUP MODAL //////////////////////
+///////////////// SIGNUP,LOGIN MODAL //////////////////////
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  .checkbox {
+    font-weight: 400;
+  }
+  .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    &:focus {
+      z-index: 2;
+    }
+  }
+  input[type="email"] {
+    margin-bottom: -1px;
+  }
+  input[type="password"] {
+    margin-bottom: 10px;
+  }
 }
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-}
+
 .social-btn {
   border-radius: 5px;
   padding: 7px;
   transition: all 0.3s;
   font-size: x-large;
+  color: white;
   &:hover {
     opacity: 0.9;
   }
@@ -93,15 +95,12 @@ footer {
 .facebook {
   background-color: #3B5998;
   border-color: #3B5998;
-  color: white;
 }
 .twitter {
   background-color: #1DA1F2;
   border-color: #1DA1F2;
-  color: white;
 }
 .google {
   background-color: #DB4437;
   border-color: #DB4437;
-  color: white;
 }

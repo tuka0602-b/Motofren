@@ -9,13 +9,16 @@ header
             | ポートフォリオとして製作しました。
               バイクで気軽に出かけたり、自慢し合える繋がりができればと思い機能を実装しました。また、このサイトを通じて、観光経済に貢献できれば尚嬉しいです。
         .col-sm-4.offset-md-1.py-4
-          button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#signup-modal"
-            | 新規登録
-          button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#login-modal"
-            | ログイン
+          - if user_signed_in?
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+          - else
+            button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#signup-modal"
+              | 新規登録
+            button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#login-modal"
+              | ログイン
 
   .navbar.navbar-light.bg-light.shadow-sm
     .container.d-flex.justify-content-between
       = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand d-flex align-items-center"
-      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"]
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
         span.navbar-toggler-icon

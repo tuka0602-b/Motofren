@@ -1,5 +1,5 @@
-.modal.fade[id="login-modal" tabindex="-1" role="dialog" aria-hidden="true"]
-  .modal-dialog.modal-dialog-centered[role="document"]
+.modal.fade#login-modal tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered role="document"
     .modal-content.bg-light
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin text-center" } ) do |f|
         = bootstrap_devise_error_messages!
@@ -15,33 +15,17 @@
             = f.label :remember_me, class: 'form-check-label' do
               = resource.class.human_attribute_name('remember_me')
         .form-group
-          = f.submit class: 'btn btn-lg btn-primary btn-block'
+          = f.submit "ログインする", class: 'btn btn-lg btn-primary btn-block'
         p.mt-4.mb-2.text-muted
           | または
         hr.container
         .my-4.text-center
-          button type="button" class="social-btn facebook mr-4 mb-2" data-toggle="modal" data-target="#ModalCSS"<i class="fab fa-facebook-f fa-fw" aria-hidden="true"></i>
-          button type="button" class="social-btn twitter mr-4 mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-twitter fa-fw" aria-hidden="true"></i>
-          button type="button" class="social-btn google mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-google fa-fw" aria-hidden="true"></i>
+          = link_to user_facebook_omniauth_authorize_path do
+            button type="button" class="social-btn facebook mr-4 mb-2" data-toggle="modal" data-target="#ModalCSS"<i class="fab fa-facebook-f fa-fw" aria-hidden="true"></i>
+          = link_to user_twitter_omniauth_authorize_path do
+            button type="button" class="social-btn twitter mr-4 mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-twitter fa-fw" aria-hidden="true"></i>
+          = link_to user_google_oauth2_omniauth_authorize_path do
+            button type="button" class="social-btn google mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-google fa-fw" aria-hidden="true"></i>
         p.mt-4.mb-2.text-muted
           | アカウントがございませんか?
-          span.ml-1 = link_to "会員登録", "#"
-
-      / form.form-signin.text-center
-      /   = image_tag("motofren.png", class: "sitelogo")
-      /   h1.h3.mb-3.font-weight-normal
-      /     | Please sign in
-      /   label.sr-only[for="inputEmail"]
-      /     | Email address
-      /   input#inputEmail.form-control[type="email" placeholder="Email address" required autofocus]
-      /   label.sr-only[for="inputPassword"]
-      /     | Password
-      /   input#inputPassword.form-control[type="password" placeholder="Password" required]
-      /   .checkbox.mb-3
-      /     label
-      /       input[type="checkbox" value="remember-me"]
-      /       |  Remember me 
-      /   button.btn.btn-lg.btn-primary.btn-block[type="submit"]
-      /     | Sign in
-      /   p.mt-5.mb-3.text-muted
-      /     | © 2017-{{ site.time | date: "%Y" }}
+          span.ml-1 = link_to "会員登録",  new_user_registration_path
