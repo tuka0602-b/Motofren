@@ -1,17 +1,26 @@
-h1
-  = t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group.form-check
-      = f.check_box :remember_me, class: 'form-check-input'
-      = f.label :remember_me, class: 'form-check-label' do
-        = resource.class.human_attribute_name('remember_me')
-  .form-group
-    = f.submit  t('.sign_in'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+.container-fluid
+  .row.no-gutter
+    .d-none.d-md-flex.col-md-4.col-lg-6.bg-image
+    .col-md-8.col-lg-6
+      .login.d-flex.align-items-center.py-5
+        .container
+          .row
+            .col-md-9.col-lg-8.mx-auto
+              h3.login-heading.mb-4
+                | Welcome back!
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                .form-label-group
+                  = f.label "Email address", for: "inputEmail"
+                  = f.email_field :email, id: "inputEmail", class: 'form-control', type: "email", placeholder: "Email address"
+                .form-label-group
+                  = f.label "Password", for: "inputPassword"
+                  = f.password_field :password, id: "inputPassword", class: 'form-control', type: "email", placeholder: "Password"
+                - if devise_mapping.rememberable?
+                  .custom-control.custom-checkbox.mb-3
+                    = f.check_box :remember_me, id: "customCheck1", class: 'custom-control-input', type: "checkbox"
+                    = f.label "Remember me", class: "custom-control-label", for: "customCheck1"
+                      = resource.class.human_attribute_name('remember_me')
+                  = f.submit "ログイン", class: "btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2", type: "submit"
+                .text-center
+                  a.small[href="#"]
+                    | Forgot password?

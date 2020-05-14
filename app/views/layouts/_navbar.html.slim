@@ -3,8 +3,8 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand"
     button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
-    .collapse.navbar-collapse
-      = render 'layouts/flash'
+    .collapse.navbar-collapse#navbars
+      = render 'shared/flash'
       ul.navbar-nav.ml-auto
         - if user_signed_in?
           li.nav-item.mr-2
@@ -20,8 +20,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             input.form-control type="text" placeholder="Search" aria-label="Search"
         - else
           li.nav-item.mr-2
-            button type="button" class="btn btn-light" data-toggle="modal" data-target="#signup-modal"
-              | 新規登録
+            = link_to "新規登録", new_user_registration_path, class: "btn btn-light"
           li.nav-item.mr-3
-            button type="button" class="btn btn-light" data-toggle="modal" data-target="#login-modal"
-              | ログイン
+            = link_to "ログイン", new_user_session_path, class: "btn btn-light"
