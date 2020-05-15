@@ -9,13 +9,13 @@
 }
 
 .login-image {
-  background-image: image-path('login-image.jpg');
+  background-image: image-url('login-image.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .signup-image {
-  background-image: image-path('signup-image.jpg');
+  background-image: image-url('signup-image.jpg');
   background-size: cover;
   background-position: center;
 }
