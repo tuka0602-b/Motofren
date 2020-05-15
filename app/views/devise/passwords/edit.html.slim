@@ -4,7 +4,7 @@
       h3.login-heading.mb-4.mt-4
         = t('.change_your_password')
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-        = bootstrap_devise_error_messages!
+        = render "devise/shared/error_messages", resource: resource 
         = f.hidden_field :reset_password_token
         .form-group
           = f.label :password, t('.new_password')
