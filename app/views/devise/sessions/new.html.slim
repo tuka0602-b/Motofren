@@ -1,6 +1,6 @@
 .container-fluid
   .row.no-gutter
-    .d-none.d-md-flex.col-md-4.col-lg-6.bg-image
+    .d-none.d-md-flex.col-md-4.col-lg-6.login-image
     .col-md-8.col-lg-6
       .login.d-flex.align-items-center.py-5
         .container
@@ -9,18 +9,15 @@
               h3.login-heading.mb-4
                 | Welcome back!
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-                .form-label-group
-                  = f.label "Email address", for: "inputEmail"
-                  = f.email_field :email, id: "inputEmail", class: 'form-control', type: "email", placeholder: "Email address"
-                .form-label-group
-                  = f.label "Password", for: "inputPassword"
-                  = f.password_field :password, id: "inputPassword", class: 'form-control', type: "email", placeholder: "Password"
+                .form-group
+                  = f.email_field :email, id: "inputEmail", class: 'form-control', type: "email", placeholder: "メールアドレス"
+                .form-group
+                  = f.password_field :password, id: "inputPassword", class: 'form-control', type: "password", placeholder: "パスワード"
                 - if devise_mapping.rememberable?
                   .custom-control.custom-checkbox.mb-3
                     = f.check_box :remember_me, id: "customCheck1", class: 'custom-control-input', type: "checkbox"
-                    = f.label "Remember me", class: "custom-control-label", for: "customCheck1"
+                    = f.label :remember_me, class: "custom-control-label", for: "customCheck1"
                       = resource.class.human_attribute_name('remember_me')
                   = f.submit "ログイン", class: "btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2", type: "submit"
                 .text-center
-                  a.small[href="#"]
-                    | Forgot password?
+                  = link_to "パスワードを忘れましたか？", new_password_path(resource_name)
