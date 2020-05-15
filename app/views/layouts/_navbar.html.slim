@@ -1,10 +1,10 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container
     = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand"
+    = render 'shared/flash'
     button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbars
-      = render 'shared/flash'
       ul.navbar-nav.ml-auto
         - if user_signed_in?
           li.nav-item.mr-2
