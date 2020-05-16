@@ -124,10 +124,27 @@ RSpec.describe "Devise::Users", type: :system do
       click_link "アカウント設定"
 
       expect do
-        click_link "アカウント削除"
+        click_link "はい"
         page.accept_confirm "本当によろしいですか?"
         expect(page).to have_content "アカウント登録もしくはログインしてください。"
       end.to change(User, :count).by(-1)
+    end
+  end
+
+  describe "ゲストログイン機能" do
+    it "ゲストユーザーとしてログインできること" do
+      visit root_path
+      find('.navbar-toggler').click
+      click_link "ゲストログイン(閲覧用)"
+      expect(page).to have_content "ゲストユーザーとしてログインしました。"
+      expect(page).to have_current_path root_path
+
+      # ゲストユーザーは削除できない
+      click_dropdown
+      click_link "アカウント設定"
+      click_link "はい"
+      page.accept_confirm "本当によろしいですか?"
+      expect(page).to have_content "ゲストユーザーは削除できません。"
     end
   end
 end

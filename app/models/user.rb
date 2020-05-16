@@ -17,6 +17,12 @@ class User < ApplicationRecord
     user
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com', name: 'UserGuest') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
   # deviseのupdate_without_passwordを参考に
   def update_without_current_password(params)
     params.delete(:current_password)
