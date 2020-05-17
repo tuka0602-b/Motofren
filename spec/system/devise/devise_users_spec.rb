@@ -101,7 +101,7 @@ RSpec.describe "Devise::Users", type: :system do
         fill_in "パスワード", with: "hogehoge"
         click_button "ログイン"
         expect(page).to have_selector "strong", text: "ログインしました。"
-        
+
         find('.navbar-toggler').click
         click_dropdown
         click_link "アカウント設定"

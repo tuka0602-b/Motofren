@@ -1,8 +1,8 @@
 module UsersHelper
-   # 引数で与えられたユーザーのGravatar画像を返す
-   def gravatar_for(user)
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+  # 引数で与えられたユーザーのGravatar画像を返す
+  def gravatar_for(user, size: 100)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-    image_tag(gravatar_url, alt: user.name, class: "ui-w-100 rounded-circle")
+    image_tag(gravatar_url, alt: user.name, class: "ui-w-#{size} rounded-circle")
   end
 end
