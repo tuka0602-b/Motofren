@@ -76,4 +76,12 @@ RSpec.describe User, type: :model do
     user.save
     expect(user.email).to eq user.reload.email
   end
+
+  it "ユーザーが削除されると関連する画像投稿も削除されること" do
+    user.save
+    user.image_posts.create!(picture: Rack::Test::UploadedFile.new(
+      File.join(Rails.root, 'spec/fixtures/sky.png'), 'image/png'
+    ))
+    expect { user.destroy }.to change(ImagePost, :count).by(-1)
+  end
 end
