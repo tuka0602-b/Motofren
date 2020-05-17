@@ -68,6 +68,11 @@ RSpec.describe User, type: :model do
       user.password = "a" * 5
       expect(user).not_to be_valid
     end
+
+    it "自己紹介が200文字を超える" do
+      user.introduction = "a" * 201
+      expect(user).not_to be_valid
+    end
   end
 
   it "ユーザー登録時はメールアドレスが全て小文字に変換されること" do

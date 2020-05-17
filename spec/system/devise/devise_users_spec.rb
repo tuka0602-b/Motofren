@@ -83,6 +83,7 @@ RSpec.describe "Devise::Users", type: :system do
       fill_in "メールアドレス", with: email
       fill_in "パスワード", with: password
       fill_in "パスワード（確認用）", with: password
+      fill_in "自己紹介", with: "テスト用の自己紹介です！"
       click_button "更新"
     end
 
@@ -100,6 +101,11 @@ RSpec.describe "Devise::Users", type: :system do
         fill_in "パスワード", with: "hogehoge"
         click_button "ログイン"
         expect(page).to have_selector "strong", text: "ログインしました。"
+        
+        find('.navbar-toggler').click
+        click_dropdown
+        click_link "アカウント設定"
+        expect(page).to have_content "テスト用の自己紹介です！"
       end
     end
 

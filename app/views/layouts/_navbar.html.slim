@@ -13,6 +13,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             a#dropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
               | Dropdown
             .dropdown-menu aria-labelledby="dropdown"
+              = link_to "プロフィール", current_user, class: "dropdown-item"
               = link_to "アカウント設定", edit_user_registration_path, class: "dropdown-item"
               = link_to "フォロワー", "#", class: "dropdown-item"
               = link_to "ログアウト", destroy_user_session_path, method: "delete", class: "dropdown-item"

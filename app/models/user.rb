@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :image_posts, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
+  validates :introduction, length: { maximum: 200 }
 
   def self.from_omniauth(auth)
     # Omniauth認証するたびに認証先ユーザー情報（名前など）が取得される。
