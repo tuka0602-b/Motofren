@@ -4,28 +4,28 @@
       div
         a.d-inline-block.text-dark[href="#"]
           strong.mr-1
-            | 234
+            | ###
           span.text-muted
             | followers
         a.d-inline-block.text-dark.ml-3[href="#"]
           strong.mr-1
-            | 111
+            | ###
           span.text-muted
             | following
       div
         a.btn.btn-success.btn-sm[href="#"]
-          |  Follow 
+          |  Follow### 
         a.btn.btn-default.icon-btn.md-btn-flat.btn-sm.ml-1[href="#"]
           i.ion.ion-md-mail
   hr.m-0
   .container
     .text-center.py-5
-      = gravatar_for(current_user)
+      = gravatar_for(@user)
       .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
         h4.font-weight-bold.my-4
-          = current_user.name
+          = @user.name
         .text-muted.mb-4
-          = current_user.introduction
+          = @user.introduction
       .text-center
         a.btn.icon-btn.borderless.btn-outline-twitter.btn-lg.btn-round[href="#"]
           span.ion.ion-logo-twitter
@@ -40,10 +40,14 @@
         | Posts
     li.nav-item
       a.nav-link.py-4[href="#"]
-        | Likes
+        | Likes###
     li.nav-item
       a.nav-link.py-4[href="#"]
-        | Followers
+        | Followers###
     li.nav-item
       a.nav-link.py-4[href="#"]
-        | Following
+        | Following###
+
+  .container.mt-4
+    .row.text-center.text-lg-left
+      = render @image_posts
