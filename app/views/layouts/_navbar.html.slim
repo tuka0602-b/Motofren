@@ -9,8 +9,6 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         - if user_signed_in?
           li.nav-item.mr-2
             = link_to "ホーム", root_path, class: "nav-link"
-          li.nav-item.mr-2
-            = link_to "ユーザー", users_path, class: "nav-link"
           li.nav-item.dropdown.mr-2
             a#dropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
               | Dropdown
