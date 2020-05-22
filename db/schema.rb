@@ -12,12 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_05_16_132530) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "image_posts", force: :cascade do |t|
+  create_table "image_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "picture", null: false
-    t.text "content"
+    t.text "content", limit: 255
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_132530) do
     t.index ["user_id"], name: "index_image_posts_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -36,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_132530) do
     t.string "provider"
     t.string "uid"
     t.string "name", default: "", null: false
-    t.text "introduction"
+    t.text "introduction", limit: 255
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
