@@ -19,20 +19,18 @@
           i.ion.ion-md-mail
   hr.m-0
   .container
-    .text-center.py-5
-      = gravatar_for(@user)
-      .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
-        h4.font-weight-bold.my-4
-          = @user.name
-        .text-muted.mb-4
-          = @user.introduction
-      .text-center
-        a.btn.icon-btn.borderless.btn-outline-twitter.btn-lg.btn-round[href="#"]
-          span.ion.ion-logo-twitter
-        a.btn.icon-btn.borderless.btn-outline-facebook.btn-lg.btn-round[href="#"]
-          span.ion.ion-logo-facebook
-        a.btn.icon-btn.borderless.btn-outline-instagram.btn-lg.btn-round[href="#"]
-          span.ion.ion-logo-instagram
+    .row
+      .col-8
+        .text-center.py-5
+          = gravatar_for(@user)
+          .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
+            h4.font-weight-bold.my-4
+              = @user.name
+            .text-muted.mb-4
+              = @user.introduction
+      .col-4.align-self-center
+        h1.mt-5 hogehohge
+        h1 hooahoed
   hr.m-0
   ul.nav.nav-tabs.tabs-alt.justify-content-center
     li.nav-item
@@ -49,5 +47,28 @@
         | Following###
 
   .container.mt-4
-    .row.text-center.text-lg-left
+    .row.text-center
       = render @image_posts
+
+/ .modal.fade#exampleModalCenter tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+/   .modal-dialog.modal-xl role="document"
+/     .modal-content
+/       .container
+/         .row
+/           .d-none.d-md-flex.col-md-8.col-lg-8
+/             = image_tag(@user.image_posts.first.picture.url, class: "img-fluid")
+/           .col-md-4.col-lg-4
+/             .login.d-flex.align-items-center.py-5
+/               .container
+/                 .row
+/                   .col-md-9.col-lg-8.mx-auto
+/                     h3.login-heading.mb-4
+/                       | Welcome back!
+/                     form
+/                       .form-label-group
+/                         input#inputEmail.form-control[type="email" placeholder="Email address" required autofocus]
+/                         label[for="inputEmail"]
+/                           | Email address
+/                       button.btn.btn-lg.btn-primary.btn-block.btn-login.text-uppercase.font-weight-bold.mb-2[type="submit"]
+/                         | Sign in
+ 

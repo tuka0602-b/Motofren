@@ -12,3 +12,10 @@ User.create!(name:  name,
     password:              password,
     password_confirmation: password)
 end
+
+users = User.order(:created_at).take(6)
+6.times do |n|
+  users.each do |user|
+    user.image_posts.create!(picture: File.open("./public/images/photo#{n+1}.JPG"))
+  end
+end

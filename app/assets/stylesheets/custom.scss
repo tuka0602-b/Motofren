@@ -120,3 +120,14 @@
 .nav-tabs .nav-link.active {
     border-bottom-color: #fff;
 }
+
+.post-img-list{
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transition: all 0.2s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
