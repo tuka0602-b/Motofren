@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ImagePost, type: :model do
   let(:user) { create(:user) }
-  let(:image_post) do
-    user.image_posts.build(picture: Rack::Test::UploadedFile.new(
-      File.join(Rails.root, 'spec/fixtures/sky.png'), 'image/png'
-    ))
-  end
+  let(:image_post) { build(:image_post, user_id: user.id) }
 
   context "画像投稿が有効になるとき" do
     it "ユーザーid、画像があること" do
