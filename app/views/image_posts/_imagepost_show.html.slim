@@ -1,0 +1,9 @@
+.modal-dialog.modal-dialog-centered.modal-xl
+  .modal-content
+    .container
+      .row
+        .d-md-flex.col-md-8.col-lg-8
+          = image_tag(@image_post.picture.url, class: "img-fluid post-img-show")
+        .col-md-4.col-lg-4
+          = link_to "削除", image_post_path(@image_post), method: :delete, data: { confirm: '削除しますか？'}
+ 

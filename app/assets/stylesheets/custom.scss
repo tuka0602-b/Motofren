@@ -121,7 +121,7 @@
     border-bottom-color: #fff;
 }
 
-.post-img-list{
+.post-img-list {
   width: 350px;
   height: 350px;
   object-fit: cover;
@@ -130,4 +130,9 @@
   &:hover {
     opacity: 0.8;
   }
+}
+
+.post-img-show {
+  width: 700px;
+  height: 700px;
 }
