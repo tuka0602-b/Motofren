@@ -19,18 +19,7 @@
           i.ion.ion-md-mail
   hr.m-0
   .container
-    .row
-      .col-8
-        .text-center.py-5
-          = gravatar_for(@user)
-          .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
-            h4.font-weight-bold.my-4
-              = @user.name
-            .text-muted.mb-4
-              = @user.introduction
-      .col-4.align-self-center
-        h1.mt-5 hogehohge
-        h1 hooahoed
+    = render 'users/profile', user: @user
   hr.m-0
   ul.nav.nav-tabs.tabs-alt.justify-content-center
     li.nav-item
