@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :with_image_posts) }
   let(:other_user) { create(:user) }
 
   describe "プロフィールページ" do
@@ -19,11 +19,13 @@ RSpec.describe "Users", type: :system do
       end
 
       context "自分のプロフィールページ" do
-        it "プロフィールと画像投稿フォームが表示されること" do
+        it "プロフィール、画像投稿フォーム,画像一覧が表示されること" do
           visit user_path(user)
           expect(page).to have_selector "h4", text: user.name
           expect(page).to have_content user.introduction
           expect(page).to have_selector "#image_post_content"
+          expect(page).to have_selector ".post-img-list"
+          expect(page).to have_selector "ul.pagination"
         end
       end
 
@@ -33,6 +35,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_selector "h4", text: other_user.name
           expect(page).to have_content other_user.introduction
           expect(page).not_to have_selector "#image_post_content"
+          expect(page).not_to have_selector ".post-img-list"
         end
       end
     end
