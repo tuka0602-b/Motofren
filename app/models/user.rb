@@ -6,6 +6,12 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i(facebook twitter google_oauth2)
 
   has_many :image_posts, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }
