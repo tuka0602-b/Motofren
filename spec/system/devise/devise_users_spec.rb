@@ -55,11 +55,6 @@ RSpec.describe "Devise::Users", type: :system do
       it "ログインが成功すること" do
         expect(page).to have_content "ログインしました。"
         expect(page).to have_current_path root_path
-
-        click_dropdown
-        click_link "ログアウト"
-        expect(page).to have_content "アカウント登録もしくはログインしてください。"
-        expect(page).to have_current_path new_user_session_path
       end
     end
 
@@ -102,7 +97,6 @@ RSpec.describe "Devise::Users", type: :system do
         click_button "ログイン"
         expect(page).to have_selector "strong", text: "ログインしました。"
 
-        find('.navbar-toggler').click
         click_dropdown
         click_link "アカウント設定"
         expect(page).to have_content "テスト用の自己紹介です！"

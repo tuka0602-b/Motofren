@@ -5,24 +5,24 @@ RSpec.describe ImagePost, type: :model do
   let(:image_post) { build(:image_post, user_id: user.id) }
 
   context "画像投稿が有効になるとき" do
-    it "ユーザーid、画像があること" do
+    it "ユーザーid、画像がある" do
       image_post.content = nil
       expect(image_post).to be_valid
     end
   end
 
   context "画像投稿が無効になるとき" do
-    it "画像がないこと" do
+    it "画像がない" do
       image_post.picture = nil
       expect(image_post).not_to be_valid
     end
 
-    it "ユーザーidが紐づいていないこと" do
+    it "ユーザーidが紐づいていない" do
       image_post.user_id = nil
       expect(image_post).not_to be_valid
     end
 
-    it "投稿の文字数が140文字を超えていること" do
+    it "投稿の文字数が140文字を超えている" do
       image_post.content = "a" * 141
       expect(image_post).not_to be_valid
     end

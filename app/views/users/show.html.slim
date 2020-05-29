@@ -35,29 +35,10 @@
       a.nav-link.py-4[href="#"]
         | Following###
 
-  .container.mt-4
-    .row.text-center
-      = render @image_posts
-
-/ .modal.fade#exampleModalCenter tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
-/   .modal-dialog.modal-xl role="document"
-/     .modal-content
-/       .container
-/         .row
-/           .d-none.d-md-flex.col-md-8.col-lg-8
-/             = image_tag(@user.image_posts.first.picture.url, class: "img-fluid")
-/           .col-md-4.col-lg-4
-/             .login.d-flex.align-items-center.py-5
-/               .container
-/                 .row
-/                   .col-md-9.col-lg-8.mx-auto
-/                     h3.login-heading.mb-4
-/                       | Welcome back!
-/                     form
-/                       .form-label-group
-/                         input#inputEmail.form-control[type="email" placeholder="Email address" required autofocus]
-/                         label[for="inputEmail"]
-/                           | Email address
-/                       button.btn.btn-lg.btn-primary.btn-block.btn-login.text-uppercase.font-weight-bold.mb-2[type="submit"]
-/                         | Sign in
+  - if @user.image_posts.any?
+    .container.mt-4
+      .row.text-center
+        = render @image_posts
+      .row.mt-2.mb-3
+        = paginate @image_posts
  
