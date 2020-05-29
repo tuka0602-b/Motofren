@@ -1,2 +1,2 @@
-$("#imagepost-modal").html("<%= escape_javascript(render 'imagepost_show') %>")
+$("#imagepost-modal").html("<%= escape_javascript(render 'imagepost_show', image_post: @image_post) %>")
 $("#imagepost-modal").modal("show")

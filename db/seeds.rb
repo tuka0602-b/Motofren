@@ -19,6 +19,9 @@ end
 users = User.order(:created_at).take(6)
 13.times do |n|
   users.each do |user|
-    user.image_posts.create!(picture: File.open("./public/images/photo#{n+1}.JPG"))
+    user.image_posts.create!(
+      picture: File.open("./public/images/photo#{n+1}.JPG"),
+      content: Faker::Lorem.sentence(word_count: 5)
+    )
   end
 end
