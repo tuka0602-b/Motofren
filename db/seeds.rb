@@ -1,3 +1,4 @@
+# ユーザー
 User.create!(name:  "Example User",
   email: "example@railstutorial.org",
   introduction: "ドゥカティモンスターに乗ってみたい今日この頃",
@@ -16,6 +17,7 @@ User.create!(name:  name,
     password_confirmation: password)
 end
 
+# 画像投稿
 users = User.order(:created_at).take(6)
 13.times do |n|
   users.each do |user|
@@ -25,3 +27,11 @@ users = User.order(:created_at).take(6)
     )
   end
 end
+
+# リレーションシップ
+users = User.all
+user = User.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

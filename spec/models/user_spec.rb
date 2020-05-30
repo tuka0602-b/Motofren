@@ -89,4 +89,16 @@ RSpec.describe User, type: :model do
     ))
     expect { user.destroy }.to change(ImagePost, :count).by(-1)
   end
+
+  it "フォロー・アンフォローができること" do
+    mario = create(:user)
+    luige = create(:user)
+
+    expect(mario.following?(luige)).to eq false
+    mario.follow(luige)
+    expect(mario.following?(luige)).to eq true
+    expect(luige.followers.include?(mario)).to eq true
+    mario.unfollow(luige)
+    expect(mario.following?(luige)).to eq false
+  end
 end
