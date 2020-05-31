@@ -4,14 +4,14 @@
       div
         a.d-inline-block.text-dark[href="#"]
           strong.mr-1
-            | ###
+            = @user.following.count
           span.text-muted
-            | followers
+            | フォロー
         a.d-inline-block.text-dark.ml-3[href="#"]
           strong.mr-1
-            | ###
+            = @user.followers.count
           span.text-muted
-            | following
+            | フォロワー
       div
         a.btn.btn-success.btn-sm[href="#"]
           |  Follow### 
@@ -23,22 +23,29 @@
   hr.m-0
   ul.nav.nav-tabs.tabs-alt.justify-content-center
     li.nav-item
-      a.nav-link.py-4.active[href="#"]
+      a.nav-link.py-4.active data-toggle="tab" href="#tab1"
         | Posts
     li.nav-item
-      a.nav-link.py-4[href="#"]
+      a.nav-link.py-4 data-toggle="tab" href="#tab2"
         | Likes###
     li.nav-item
-      a.nav-link.py-4[href="#"]
+      a.nav-link.py-4 data-toggle="tab" href="#tab3"
         | Followers###
     li.nav-item
-      a.nav-link.py-4[href="#"]
+      a.nav-link.py-4 data-toggle="tab" href="#tab4"
         | Following###
-
-  - if @user.image_posts.any?
-    .container.mt-4
-      .row.text-center
-        = render @image_posts
-      .row.mt-2.mb-3
-        = paginate @image_posts
- 
+    
+  .tab-content
+    .tab-pane.active#tab1
+      - if @user.image_posts.any?
+        .container.mt-4
+          .row.text-center
+            = render @image_posts
+          .row.mt-2.mb-3
+            = paginate @image_posts
+    .tab-pane#tab2
+      | hoge
+    .tab-pane#tab3
+      | mario
+    .tab-pane#tab4
+      | luige
