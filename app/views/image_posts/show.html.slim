@@ -1,0 +1,52 @@
+.container
+  .row.mt-3.justify-content-center
+    .col-md-7.mb-3
+      article
+        = image_tag(@image_post.picture.url, class: "img-fluid mb-3")
+        .post-content
+          h4
+            = @image_post.content
+          ul.post-meta.list-inline
+            li.list-inline-item
+              i.fa.fa-user-circle-o
+              a[href="#"]
+                = gravatar_for(@user, size: 40)
+                = @user.name
+            li.list-inline-item
+              i.fa.fa-calendar-o
+              a[href="#"]
+                | コメント 10件
+            li.list-inline-item
+              i.fa.fa-tags
+              a[href="#"]
+                | いいね！
+          hr.mb-3
+          form[role="form"]
+            .form-group
+              textarea.form-control[rows="3" placeholder="Comment"]
+            .clearfix.float-left
+              button.btn.btn-info
+                | コメントする
+    .col-md-5
+      div
+        h4.sidebar-title
+          | コメント
+        ul.list-unstyled
+          li.media
+            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Generic placeholder image"]
+            .media-body
+              h5.mt-0.mb-1
+                a[href="#"]
+                  | Lorem ipsum dolor sit amet
+          li.media.my-4
+            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image"]
+            .media-body
+              h5.mt-0.mb-1
+                a[href="#"]
+                  | Lorem ipsum dolor sit amet
+          li.media
+            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image"]
+            .media-body
+              h5.mt-0.mb-1
+                a[href="#"]
+                  | Lorem ipsum dolor sit amet

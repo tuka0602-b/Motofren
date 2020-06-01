@@ -148,7 +148,7 @@ body {
   }
 }
 
-
+///////////////////// SHOW_FOLLOW /////////////////////////
 .followers-box {
   float: left; 
   width: 100%;
@@ -239,4 +239,68 @@ body {
  font-family: 'Abhaya Libre', serif;	
  font-size: 14px;
  margin-left: 5px;
+}
+
+//////////////////////// IMAGE_POST_SHOW //////////////////////////
+.post-content .post-title {
+  font-weight: 500;
+}
+
+.post-meta {
+  padding-top: 15px;
+  margin-bottom: 20px;
+  li:not(:last-child) {
+    margin-right: 10px;
+  }
+  li a {
+    color: #999;
+    font-size: 13px;
+    &:hover {
+      color: #4782d3;
+    }
+  }
+  li i {
+    margin-right: 5px;
+  }
+  li:after {
+    margin-top: -5px;
+    content: "/";
+    margin-left: 10px;
+  }
+  li:last-child:after {
+    display: none;
+  }
+}
+
+.post-content .fa {
+  color: #ddd;
+}
+
+.post-content a h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0px;
+}
+.media-body h5 a {
+  color: #555;
+}
+
+.sidebar-title {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.media-body h5 {
+  font-size: 15px;
+  letter-spacing: 0px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.media-body h5 a {
+  color: #555;
+}
+
+.media-body h5 a:hover {
+  color: #4782d3;
 }

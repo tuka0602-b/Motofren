@@ -1,4 +1,2 @@
 .col-lg-4.col-md-4.col-12
-  = link_to image_tag(image_post.picture.url, class: "img-fluid post-img-list"), image_post_path(image_post), remote: true, class: "d-block mb-4"
-
-  .modal#imagepost-modal tabindex="-1" role="dialog" aria-hidden="true"
+  = link_to image_tag(image_post.picture.url, class: "img-fluid post-img-list"), image_post_path(image_post), class: "d-block mb-4"
