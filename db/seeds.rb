@@ -35,3 +35,8 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# 画像投稿いいね！
+user = User.first
+image_posts = ImagePost.recent.take(20)
+image_posts.each { |image_post| user.image_like(image_post)}

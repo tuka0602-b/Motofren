@@ -14,6 +14,8 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :image_post_likes
+  has_many :like_image_posts, through: :image_post_likes, source: :image_post
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }
@@ -56,5 +58,17 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def image_like(image_post)
+    like_image_posts << image_post
+  end
+
+  def image_unlike(image_post)
+    image_post_likes.find_by(image_post_id: image_post.id).destroy
+  end
+
+  def like_image?(image_post)
+    like_image_posts.include?(image_post)
   end
 end

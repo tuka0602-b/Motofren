@@ -94,11 +94,23 @@ RSpec.describe User, type: :model do
     mario = create(:user)
     luige = create(:user)
 
-    expect(mario.following?(luige)).to eq false
+    expect(mario.following?(luige)).to be_falsey
     mario.follow(luige)
-    expect(mario.following?(luige)).to eq true
-    expect(luige.followers.include?(mario)).to eq true
+    expect(mario.following?(luige)).to be_truthy
+    expect(luige.followers.include?(mario)).to be_truthy
     mario.unfollow(luige)
-    expect(mario.following?(luige)).to eq false
+    expect(mario.following?(luige)).to be_falsey
+  end
+
+  it "画像投稿にいいね！ができること" do
+    user = create(:user)
+    image_post = create(:image_post)
+
+    expect(user.like_image?(image_post)).to be_falsey
+    user.image_like(image_post)
+    expect(user.like_image?(image_post)).to be_truthy
+    expect(image_post.like_users.include?(user)).to be_truthy
+    user.image_unlike(image_post)
+    expect(user.like_image?(image_post)).to be_falsey
   end
 end

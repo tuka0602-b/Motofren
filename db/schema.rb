@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_133418) do
+ActiveRecord::Schema.define(version: 2020_06_01_121929) do
+
+  create_table "image_post_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "image_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_post_id"], name: "index_image_post_likes_on_image_post_id"
+    t.index ["user_id", "image_post_id"], name: "index_image_post_likes_on_user_id_and_image_post_id", unique: true
+    t.index ["user_id"], name: "index_image_post_likes_on_user_id"
+  end
 
   create_table "image_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "picture", null: false
@@ -48,5 +58,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_133418) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "image_post_likes", "image_posts"
+  add_foreign_key "image_post_likes", "users"
   add_foreign_key "image_posts", "users"
 end
