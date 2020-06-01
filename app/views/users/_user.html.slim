@@ -12,10 +12,10 @@
             = user.following.count
             | フォロー
           p.mb-0
-            = user.following.count
+            = user.followers.count
             | フォロワー
-      span
-        - if current_user.following?(user)
-          = render 'unfollow', user: user
-        - else
-          = render 'follow', user: user
+      / span
+      /   - if current_user.following?(user)
+      /     = render 'unfollow', user: user
+      /   - else
+      /     = render 'follow', user: user

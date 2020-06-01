@@ -8,12 +8,12 @@
           span.text-muted
             | フォロー
         = link_to followers_user_path(@user), class: "d-inline-block text-dark ml-3" do
-          strong.mr-1
+          strong.mr-1#followers
             = @user.followers.count
           span.text-muted
             | フォロワー
       - unless current_user?(@user)
-        div
+        div#follow_form
           - if current_user.following?(@user)
             = render 'unfollow', user: @user
           - else
