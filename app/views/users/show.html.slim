@@ -2,50 +2,30 @@
   .container
     .d-flex.justify-content-between.align-items-center.py-4
       div
-        a.d-inline-block.text-dark[href="#"]
+        = link_to following_user_path(@user), class: "d-inline-block text-dark" do
           strong.mr-1
             = @user.following.count
           span.text-muted
             | フォロー
-        a.d-inline-block.text-dark.ml-3[href="#"]
+        = link_to followers_user_path(@user), class: "d-inline-block text-dark ml-3" do
           strong.mr-1
             = @user.followers.count
           span.text-muted
             | フォロワー
-      div
-        a.btn.btn-success.btn-sm[href="#"]
-          |  Follow### 
-        a.btn.btn-default.icon-btn.md-btn-flat.btn-sm.ml-1[href="#"]
-          i.ion.ion-md-mail
+      - unless current_user?(@user)
+        div
+          - if current_user.following?(@user)
+            = render 'unfollow', user: @user
+          - else
+            = render 'follow', user: @user
+
   hr.m-0
   .container
     = render 'users/profile', user: @user
   hr.m-0
-  ul.nav.nav-tabs.tabs-alt.justify-content-center
-    li.nav-item
-      a.nav-link.py-4.active data-toggle="tab" href="#tab1"
-        | Posts
-    li.nav-item
-      a.nav-link.py-4 data-toggle="tab" href="#tab2"
-        | Likes###
-    li.nav-item
-      a.nav-link.py-4 data-toggle="tab" href="#tab3"
-        | Followers###
-    li.nav-item
-      a.nav-link.py-4 data-toggle="tab" href="#tab4"
-        | Following###
-    
-  .tab-content
-    .tab-pane.active#tab1
-      - if @user.image_posts.any?
-        .container.mt-4
-          .row.text-center
-            = render @image_posts
-          .row.mt-2.mb-3
-            = paginate @image_posts
-    .tab-pane#tab2
-      | hoge
-    .tab-pane#tab3
-      | mario
-    .tab-pane#tab4
-      | luige
+    - if @user.image_posts.any?
+      .container.mt-4
+        .row.text-center
+          = render @image_posts
+        .row.mt-2.mb-3
+          = paginate @image_posts

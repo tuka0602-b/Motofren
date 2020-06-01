@@ -1,6 +1,6 @@
 - if current_user?(user)
-  .row
-    .col-8
+  .row.justify-content-center
+    .col-md-7.col-sm-6
       .text-center.py-5
         = gravatar_for(user)
         .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
@@ -8,7 +8,7 @@
             = user.name
           .text-muted.mb-4
             = user.introduction
-    .col-4.align-self-center
+    .col-md-5.col-sm-6.align-self-center
       = render 'shared/imagepost_form'
 - else
   .text-center.py-5

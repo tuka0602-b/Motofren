@@ -1,0 +1,21 @@
+.container
+  h3.text-muted.mt-2= @title
+  .row.mt-3
+    .col-md-4
+      .followers-box.full-width
+        .followers-list
+          .followers-body
+            = gravatar_for(@user, size: 60)
+            .name-box
+              h4.mt-3.mb-2
+                = @user.name
+              .followers-base
+                p.mb-1
+                  = @user.following.count
+                  | フォロー
+                p.mb-0
+                  = @user.followers.count
+                  | フォロワー
+    - if @users.any?
+      .col-md-8.col-lg-offset-2
+        = render @users
