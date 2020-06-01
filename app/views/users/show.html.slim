@@ -1,31 +1,30 @@
-.bg-white
-  .container
-    .d-flex.justify-content-between.align-items-center.py-4
-      div
-        = link_to following_user_path(@user), class: "d-inline-block text-dark" do
-          strong.mr-1
-            = @user.following.count
-          span.text-muted
-            | フォロー
-        = link_to followers_user_path(@user), class: "d-inline-block text-dark ml-3" do
-          strong.mr-1#followers
-            = @user.followers.count
-          span.text-muted
-            | フォロワー
-      - unless current_user?(@user)
-        div#follow_form
-          - if current_user.following?(@user)
-            = render 'unfollow', user: @user
-          - else
-            = render 'follow', user: @user
+.container
+  .d-flex.justify-content-between.align-items-center.py-4
+    div
+      = link_to following_user_path(@user), class: "d-inline-block text-dark" do
+        strong.mr-1
+          = @user.following.count
+        span.text-muted
+          | フォロー
+      = link_to followers_user_path(@user), class: "d-inline-block text-dark ml-3" do
+        strong.mr-1#followers
+          = @user.followers.count
+        span.text-muted
+          | フォロワー
+    - unless current_user?(@user)
+      div#follow_form
+        - if current_user.following?(@user)
+          = render 'unfollow', user: @user
+        - else
+          = render 'follow', user: @user
 
-  hr.m-0
-  .container
-    = render 'users/profile', user: @user
-  hr.m-0
-    - if @user.image_posts.any?
-      .container.mt-4
-        .row.text-center
-          = render @image_posts
-        .row.mt-2.mb-3
-          = paginate @image_posts
+hr.m-0
+.container
+  = render 'users/profile', user: @user
+hr.m-0
+  - if @user.image_posts.any?
+    .container.mt-4
+      .row.text-center
+        = render @image_posts
+      .row.mt-2.mb-3
+        = paginate @image_posts
