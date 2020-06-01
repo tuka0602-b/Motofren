@@ -1,16 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-  let(:user) { create(:user, :with_image_posts) }
-  let(:other_user) { create(:user) }
+  let(:user) { create(:user, :with_image_posts, :with_relationships) }
+  let(:other_user) { user.following.first }
+
+  shared_examples_for "ログインページにリダイレクトされること" do
+    it {
+      visit url
+      expect(page).to have_content "アカウント登録もしくはログインしてください。"
+      expect(page).to have_current_path new_user_session_path
+    }
+  end
 
   describe "プロフィールページ" do
     context "未ログインの場合" do
-      it "ログインページにリダイレクトされること" do
-        visit user_path(user)
-        expect(page).to have_content "アカウント登録もしくはログインしてください。"
-        expect(page).to have_current_path new_user_session_path
-      end
+      let(:url) { user_path(user) }
+
+      it_behaves_like "ログインページにリダイレクトされること"
     end
 
     context "ログイン済みの場合" do
@@ -37,6 +43,46 @@ RSpec.describe "Users", type: :system do
           expect(page).not_to have_selector "#image_post_content"
           expect(page).not_to have_selector ".post-img-list"
         end
+      end
+    end
+  end
+
+  describe "Followingページ" do
+    context "未ログインの場合" do
+      let(:url) { following_user_path(user) }
+
+      it_behaves_like "ログインページにリダイレクトされること"
+    end
+
+    context "ログイン済みの場合" do
+      it "フォロー中のユーザーが表示されること" do
+        sign_in(user)
+        visit following_user_path(user)
+        expect(page).to have_content user.name
+        expect(page).to have_content user.following.count
+        expect(page).to have_content other_user.name
+        expect(page).to have_content other_user.following.count
+        # 名前をクリックするとそのユーザーのプロフィールに移動する
+        click_link other_user.name
+        expect(page).to have_current_path user_path(other_user)
+      end
+    end
+  end
+
+  describe "Followersページ" do
+    context "未ログインの場合" do
+      let(:url) { followers_user_path(user) }
+
+      it_behaves_like "ログインページにリダイレクトされること"
+    end
+
+    context "ログイン済みの場合" do
+      it "フォロワーが表示されること" do
+        sign_in(user)
+        visit followers_user_path(user)
+        expect(page).to have_content user.name
+        expect(page).to have_content user.followers.count
+        expect(page).not_to have_content other_user.name
       end
     end
   end

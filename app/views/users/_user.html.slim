@@ -4,7 +4,7 @@
       = gravatar_for(user, size: 40)
       .name-box
         h4
-          = user.name
+          = link_to user.name, user_path(user), class: "text-muted"
         span
           = user.introduction
         .followers-base.mt-2
