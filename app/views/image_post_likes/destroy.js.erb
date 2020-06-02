@@ -1,0 +1,2 @@
+$("#image_like_form").html("<%= escape_javascript(render('image_posts/image_like', image_post: @image_post)) %>");
+$("#likes-count").html("<%= escape_javascript(render('image_posts/likes_count', image_post: @image_post)) %>");

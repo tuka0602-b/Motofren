@@ -1,0 +1,4 @@
+= form_for(current_user.image_post_likes.find_by(image_post_id: image_post.id),
+            html: { method: :delete, style: "display: inline-block;" }, remote: true) do |f|
+  = f.button type: "submit", class: "unlike-button" do
+    i.fas.fa-heart

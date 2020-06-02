@@ -304,3 +304,22 @@ body {
 .media-body h5 a:hover {
   color: #4782d3;
 }
+
+.like-button {
+  font-size: 18px;
+  border-style: none;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+.unlike-button {
+  font-size: 18px;
+  color: #ED4956;
+  border-style: none;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+  }
+}

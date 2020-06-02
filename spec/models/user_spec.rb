@@ -106,11 +106,11 @@ RSpec.describe User, type: :model do
     user = create(:user)
     image_post = create(:image_post)
 
-    expect(user.like_image?(image_post)).to be_falsey
+    expect(user.image_like?(image_post)).to be_falsey
     user.image_like(image_post)
-    expect(user.like_image?(image_post)).to be_truthy
+    expect(user.image_like?(image_post)).to be_truthy
     expect(image_post.like_users.include?(user)).to be_truthy
     user.image_unlike(image_post)
-    expect(user.like_image?(image_post)).to be_falsey
+    expect(user.image_like?(image_post)).to be_falsey
   end
 end

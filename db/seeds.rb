@@ -39,4 +39,4 @@ followers.each { |follower| follower.follow(user) }
 # 画像投稿いいね！
 user = User.first
 image_posts = ImagePost.recent.take(20)
-image_posts.each { |image_post| user.image_like(image_post)}
+image_posts.each { |image_post| user.image_like(image_post) }

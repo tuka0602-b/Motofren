@@ -68,7 +68,7 @@ class User < ApplicationRecord
     image_post_likes.find_by(image_post_id: image_post.id).destroy
   end
 
-  def like_image?(image_post)
+  def image_like?(image_post)
     like_image_posts.include?(image_post)
   end
 end
