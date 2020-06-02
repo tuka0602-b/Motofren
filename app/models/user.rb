@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :image_post_likes
   has_many :like_image_posts, through: :image_post_likes, source: :image_post
+  has_many :comments
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }

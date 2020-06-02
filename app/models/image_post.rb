@@ -2,6 +2,7 @@ class ImagePost < ApplicationRecord
   belongs_to :user
   has_many :image_post_likes
   has_many :like_users, through: :image_post_likes, source: :user
+  has_many :comments
   validates :picture, presence: true
   validates :user_id, presence: true
   validates :content, length: { maximum: 140 }
