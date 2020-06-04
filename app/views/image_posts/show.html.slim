@@ -19,38 +19,16 @@
             li.list-inline-item
               span#image_like_form
                 - if current_user.image_like?(@image_post)
-                  = render 'image_unlike', image_post: @image_post
+                  = render 'image_posts/image_unlike', image_post: @image_post
                 - else
-                  = render 'image_like', image_post: @image_post
+                  = render 'image_posts/image_like', image_post: @image_post
               span#likes-count
-                = render 'likes_count', image_post: @image_post
+                = render 'image_posts/likes_count', image_post: @image_post
           hr.mb-3
-          form[role="form"]
-            .form-group
-              textarea.form-control[rows="3" placeholder="Comment"]
-            .clearfix.float-left
-              button.btn.btn-info
-                | コメントする
+          = render 'shared/comment_form'
     .col-md-5
       div
         h4.sidebar-title
           | コメント
-        ul.list-unstyled
-          li.media
-            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Generic placeholder image"]
-            .media-body
-              h5.mt-0.mb-1
-                a[href="#"]
-                  | Lorem ipsum dolor sit amet
-          li.media.my-4
-            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image"]
-            .media-body
-              h5.mt-0.mb-1
-                a[href="#"]
-                  | Lorem ipsum dolor sit amet
-          li.media
-            img.d-flex.mr-3.img-fluid[width="35" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image"]
-            .media-body
-              h5.mt-0.mb-1
-                a[href="#"]
-                  | Lorem ipsum dolor sit amet
+        ul.list-unstyled#comments
+          = render 'comments', image_post: @image_post

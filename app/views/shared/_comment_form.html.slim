@@ -1,0 +1,5 @@
+= form_for([@image_post, @comment], remote: true) do |f|
+  = render 'shared/error_messages', object: f.object
+  .form-group
+    = f.text_area :content, class: "form-control", rows: 3, placeholder: "コメントを記述"
+  = f.submit "コメントする", class: "btn btn-info"

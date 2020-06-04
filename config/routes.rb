@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       get :image_liked
     end
   end
-  resources :image_posts, only: [:show, :create, :destroy]
+  resources :image_posts, only: [:show, :create, :destroy] do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
   resources :image_post_likes, only: [:create, :destroy]
 end
