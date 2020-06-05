@@ -12,7 +12,7 @@ class ImagePostsController < ApplicationController
     if @image_post.save
       redirect_to current_user, notice: '画像を投稿しました。'
     else
-      @image_posts = current_user.image_posts.recent.all
+      @image_posts = current_user.image_posts.recent.page(params[:page])
       @user = current_user
       render 'users/show'
     end
@@ -21,7 +21,7 @@ class ImagePostsController < ApplicationController
   def destroy
     @image_post.destroy
     flash[:notice] = "画像を削除しました"
-    redirect_to request.referrer || root_url
+    redirect_to @image_post.user
   end
 
   private

@@ -27,7 +27,7 @@ RSpec.describe "ImagePosts", type: :system do
     context "自分の画像投稿の場合" do
       let(:login_user) { user }
 
-      it "画像を削除できること", js: true do
+      it "画像を削除できること" do
         expect do
           click_link "削除"
           page.accept_confirm "削除しますか？"

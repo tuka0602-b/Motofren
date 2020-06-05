@@ -24,6 +24,9 @@
                   = render 'image_posts/image_like', image_post: @image_post
               span#likes-count
                 = render 'image_posts/likes_count', image_post: @image_post
+            - if current_user?(@image_post.user)
+              li.list-inline-item
+                = link_to "削除", image_post_path(@image_post), data: { confirm: "削除しますか？" }, method: :delete
           hr.mb-3
           = render 'shared/comment_form'
     .col-md-5
