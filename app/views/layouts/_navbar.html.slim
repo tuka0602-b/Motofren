@@ -1,6 +1,9 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .container
-    = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand"
+    - if user_signed_in?
+      = link_to image_tag("motofren.png", class: "sitelogo"), root_path, class: "navbar-brand"
+    - else
+      = link_to image_tag("motofren.png", class: "sitelogo"), new_user_session_path, class: "navbar-brand"
     = render 'shared/flash'
     button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
