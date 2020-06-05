@@ -26,5 +26,10 @@ RSpec.describe Comment, type: :model do
       comment.content = ""
       expect(comment).not_to be_valid
     end
+
+    it "コメント内容が140文字を超える" do
+      comment.content = "a" * 141
+      expect(comment).not_to be_valid
+    end
   end
 end

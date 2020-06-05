@@ -25,23 +25,29 @@ RSpec.describe "Users", type: :system do
       end
 
       context "自分のプロフィールページ" do
-        it "プロフィール、画像投稿フォーム,画像一覧が表示されること" do
+        it "プロフィール、画像投稿フォーム、画像一覧、フォロー・フォロワー数が表示されること" do
           visit user_path(user)
           expect(page).to have_selector "h4", text: user.name
           expect(page).to have_content user.introduction
-          expect(page).to have_selector "#image_post_content"
+          expect(page).to have_selector "#new_image_post"
           expect(page).to have_selector ".post-img-list"
           expect(page).to have_selector "ul.pagination"
+          expect(page).to have_content "5フォロー"
+          expect(page).to have_content "0フォロワー"
         end
       end
 
       context "他人のプロフィールページ" do
-        it "プロフィールが表示されること" do
+        let!(:image_post) { create(:image_post, user: other_user) }
+        it "プロフィール、画像一覧、フォロー、フォロワー、フォロー(アンフォロー)ボタンが表示されること" do
           visit user_path(other_user)
           expect(page).to have_selector "h4", text: other_user.name
           expect(page).to have_content other_user.introduction
-          expect(page).not_to have_selector "#image_post_content"
-          expect(page).not_to have_selector ".post-img-list"
+          expect(page).not_to have_selector "#new_image_post"
+          expect(page).to have_selector ".post-img-list"
+          expect(page).to have_content "0フォロー"
+          expect(page).to have_content "1フォロワー"
+          expect(page).to have_selector "input[value$='フォロー中']" 
         end
       end
     end
@@ -58,9 +64,9 @@ RSpec.describe "Users", type: :system do
       it "フォロー中のユーザーが表示されること" do
         sign_in(user)
         visit following_user_path(user)
-        expect(page).to have_content user.name
+        expect(page).to have_selector "a", text: user.name
         expect(page).to have_content user.following.count
-        expect(page).to have_content other_user.name
+        expect(page).to have_selector "a", text: other_user.name
         expect(page).to have_content other_user.following.count
         # 名前をクリックするとそのユーザーのプロフィールに移動する
         click_link other_user.name
@@ -80,7 +86,7 @@ RSpec.describe "Users", type: :system do
       it "フォロワーが表示されること" do
         sign_in(user)
         visit followers_user_path(user)
-        expect(page).to have_content user.name
+        expect(page).to have_selector "a", text: user.name
         expect(page).to have_content user.followers.count
         expect(page).not_to have_content other_user.name
       end
