@@ -1,1 +1,7 @@
-$("#comments").html("<%= escape_javascript(render('image_posts/comments', image_post: @image_post)) %>");
+<% if @comment.errors.any? %>
+  $("#comment_form").html("<%= escape_javascript(render('shared/comment_form')) %>")
+<% else %>
+  $("#comments").html("<%= escape_javascript(render('image_posts/comments', image_post: @image_post)) %>");
+  $("#comment_content").val('');
+  $(".error-list").css('display', 'none');
+<% end %>
