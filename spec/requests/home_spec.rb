@@ -15,7 +15,7 @@ RSpec.describe "Home", type: :request do
       it "正常にレスポンスを返すこと" do
         sign_in(user)
         get root_path
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

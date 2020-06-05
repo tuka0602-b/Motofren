@@ -39,7 +39,7 @@ RSpec.describe "ImagePosts", type: :system do
 
   describe "画像詳細ページ" do
     describe "画像削除機能" do
-      let!(:image_post) { create(:image_post, user: user) }
+      let!(:image_post) { create(:image_post, content: "マツダ787Bは官能的サウンド", user: user) }
 
       before do
         sign_in(login_user)
@@ -50,9 +50,10 @@ RSpec.describe "ImagePosts", type: :system do
       context "自分の画像投稿の場合" do
         let(:login_user) { user }
 
-        it "投稿者名、コメント数、いいね！、削除が表示されること" do
+        it "投稿者名、本文、コメント数、いいね！、削除が表示されること" do
           expect(page).to have_selector "a", text: user.name
           expect(page).to have_selector "#image_like_form"
+          expect(page).to have_selector "h4", text: image_post.content
           expect do
             click_link "削除"
             page.accept_confirm "削除しますか？"
@@ -67,9 +68,14 @@ RSpec.describe "ImagePosts", type: :system do
         it "投稿者名、コメント数、いいね！が表示されること" do
           expect(page).to have_selector "a", text: user.name
           expect(page).to have_selector "#image_like_form"
+          expect(page).to have_selector "h4", text: image_post.content
           expect(page).not_to have_selector "a", text: "削除"
         end
       end
     end
+  end
+
+  describe "いいね！したユーザー一覧ページ" do
+    it "自分以外のいいねしたユーザーが表示されること"
   end
 end
