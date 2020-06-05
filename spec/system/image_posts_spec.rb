@@ -38,35 +38,37 @@ RSpec.describe "ImagePosts", type: :system do
   end
 
   describe "画像詳細ページ" do
-    let!(:image_post) { create(:image_post, user: user) }
+    describe "画像削除機能" do
+      let!(:image_post) { create(:image_post, user: user) }
 
-    before do
-      sign_in(login_user)
-      visit user_path(user)
-      find("img[src$='sky.png']").click
-    end
-
-    context "自分の画像投稿の場合" do
-      let(:login_user) { user }
-
-      it "投稿者名、コメント数、いいね！、削除が表示されること" do
-        expect(page).to have_selector "a", text: user.name
-        expect(page).to have_selector "#image_like_form"
-        expect do
-          click_link "削除"
-          page.accept_confirm "削除しますか？"
-          expect(page).to have_content "画像を削除しました"
-        end.to change(user.image_posts, :count).by(-1)
+      before do
+        sign_in(login_user)
+        visit user_path(user)
+        find("img[src$='sky.png']").click
       end
-    end
 
-    context "他人の画像投稿の場合" do
-      let(:login_user) { other_user }
+      context "自分の画像投稿の場合" do
+        let(:login_user) { user }
 
-      it "投稿者名、コメント数、いいね！が表示されること" do
-        expect(page).to have_selector "a", text: user.name
-        expect(page).to have_selector "#image_like_form"
-        expect(page).not_to have_selector "a", text: "削除"
+        it "投稿者名、コメント数、いいね！、削除が表示されること" do
+          expect(page).to have_selector "a", text: user.name
+          expect(page).to have_selector "#image_like_form"
+          expect do
+            click_link "削除"
+            page.accept_confirm "削除しますか？"
+            expect(page).to have_content "画像を削除しました"
+          end.to change(user.image_posts, :count).by(-1)
+        end
+      end
+
+      context "他人の画像投稿の場合" do
+        let(:login_user) { other_user }
+
+        it "投稿者名、コメント数、いいね！が表示されること" do
+          expect(page).to have_selector "a", text: user.name
+          expect(page).to have_selector "#image_like_form"
+          expect(page).not_to have_selector "a", text: "削除"
+        end
       end
     end
   end

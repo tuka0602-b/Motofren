@@ -9,18 +9,18 @@ RSpec.describe "ImagePosts", type: :request do
     context "自分の画像投稿の場合" do
       it "削除できること" do
         sign_in(user)
-        expect {
+        expect do
           delete image_post_path(image_post)
-        }.to change(user.image_posts, :count).by(-1)
+        end.to change(user.image_posts, :count).by(-1)
       end
     end
 
     context "他人の画像投稿の場合" do
       it "削除できないこと" do
         sign_in(other_user)
-        expect {
+        expect do
           delete image_post_path(image_post)
-        }.not_to change(user.image_posts, :count)
+        end.not_to change(user.image_posts, :count)
       end
     end
   end

@@ -14,11 +14,13 @@ RSpec.describe "Relationships", type: :system do
       expect do
         click_on "フォローする"
         expect(page).to have_selector "input[value$='フォロー中']"
+        expect(page).to have_content "1フォロワー"
       end.to change(Relationship, :count).by(1)
 
       expect do
         click_on "フォロー中"
         expect(page).to have_selector "input[value$='フォローする']"
+        expect(page).to have_content "0フォロワー"
       end.to change(Relationship, :count).by(-1)
     end
   end

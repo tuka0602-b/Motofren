@@ -39,6 +39,7 @@ RSpec.describe "Users", type: :system do
 
       context "他人のプロフィールページ" do
         let!(:image_post) { create(:image_post, user: other_user) }
+
         it "プロフィール、画像一覧、フォロー、フォロワー、フォロー(アンフォロー)ボタンが表示されること" do
           visit user_path(other_user)
           expect(page).to have_selector "h4", text: other_user.name
@@ -47,7 +48,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_selector ".post-img-list"
           expect(page).to have_content "0フォロー"
           expect(page).to have_content "1フォロワー"
-          expect(page).to have_selector "input[value$='フォロー中']" 
+          expect(page).to have_selector "input[value$='フォロー中']"
         end
       end
     end
