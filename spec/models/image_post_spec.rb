@@ -31,12 +31,12 @@ RSpec.describe ImagePost, type: :model do
   it "画像投稿を削除すると関連するコメントも削除されること" do
     image_post.save
     user.comments.create!(image_post_id: image_post.id, content: "test comment")
-    expect { image_post.destroy }.to change(Comment, :count).by(-1)
+    expect { image_post.destroy }.to change(user.comments, :count).by(-1)
   end
 
   it "画像投稿を削除すると関連する画像投稿いいね！も削除されること" do
     image_post.save
     user.image_like(image_post)
-    expect { image_post.destroy }.to change(ImagePostLike, :count).by(-1)
+    expect { image_post.destroy }.to change(user.image_post_likes, :count).by(-1)
   end
 end

@@ -95,7 +95,7 @@ RSpec.describe User, type: :model do
     user.save
     other_user = create(:user)
     user.follow(other_user)
-    expect { other_user.destroy }.to change(Relationship, :count).by(-1)
+    expect { other_user.destroy }.to change(user.following, :count).by(-1)
   end
 
   it "ユーザーを削除すると関連する画像投稿いいね！も削除されること" do
