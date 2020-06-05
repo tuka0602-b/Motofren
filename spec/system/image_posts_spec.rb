@@ -5,13 +5,25 @@ RSpec.describe "ImagePosts", type: :system do
   let(:other_user) { create(:user) }
 
   describe "画像投稿機能" do
-    it "画像投稿が出来ること" do
+    before do
       sign_in(user)
       visit user_path(user)
-      attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
-      click_button "投稿"
-      expect(page).to have_content "画像を投稿しました。"
-      expect(page).to have_selector "img[src$='sky.png']"
+    end
+
+    context "画像が選択されているとき" do
+      it "画像投稿が出来ること" do
+        attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
+        click_button "投稿"
+        expect(page).to have_content "画像を投稿しました。"
+        expect(page).to have_selector "img[src$='sky.png']"
+      end
+    end
+
+    context "画像が選択されていないとき" do
+      it "画像が投稿出来ないこと" do
+        click_button "投稿"
+        expect(page).to have_selector "li.error-list", text: "画像を選択してください"
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 = form_for(@image_post) do |f|
   = render 'shared/error_messages', object: f.object
   .field
-    = f.text_area :content, class: "form-control", rows: 5, placeholder: "投稿を作成する"
+    = f.text_area :content, class: "form-control", rows: 5, placeholder: "コメント"
   .field.mt-2.mb-2
     = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
   = f.submit "投稿", class: "btn btn-info"
