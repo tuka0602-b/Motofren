@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
+  let(:image_post) { create(:image_post) }
 
   context "ユーザーが有効な状態になる" do
     it "ユーザー名、メールアドレス、パスワードがある" do
@@ -82,12 +83,31 @@ RSpec.describe User, type: :model do
     expect(user.email).to eq user.reload.email
   end
 
-  it "ユーザーが削除されると関連する画像投稿も削除されること" do
+  it "ユーザーを削除すると関連する画像投稿も削除されること" do
     user.save
     user.image_posts.create!(picture: Rack::Test::UploadedFile.new(
       File.join(Rails.root, 'spec/fixtures/sky.png'), 'image/png'
     ))
     expect { user.destroy }.to change(ImagePost, :count).by(-1)
+  end
+
+  it "ユーザーを削除すると関連するフォローも削除されること" do
+    user.save
+    other_user = create(:user)
+    user.follow(other_user)
+    expect { other_user.destroy }.to change(Relationship, :count).by(-1)
+  end
+
+  it "ユーザーを削除すると関連する画像投稿いいね！も削除されること" do
+    user.save
+    user.image_like(image_post)
+    expect { user.destroy }.to change(ImagePostLike, :count).by(-1)
+  end
+
+  it "ユーザーを削除すると関連するコメントも削除されること" do
+    user.save
+    user.comments.create!(image_post_id: image_post.id, content: "test comment")
+    expect { user.destroy }.to change(Comment, :count).by(-1)
   end
 
   it "フォロー・アンフォローができること" do
@@ -103,9 +123,7 @@ RSpec.describe User, type: :model do
   end
 
   it "画像投稿にいいね！ができること" do
-    user = create(:user)
-    image_post = create(:image_post)
-
+    user.save
     expect(user.image_like?(image_post)).to be_falsey
     user.image_like(image_post)
     expect(user.image_like?(image_post)).to be_truthy
