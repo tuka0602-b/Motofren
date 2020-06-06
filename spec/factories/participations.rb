@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :partipication do
+  factory :participation do
     permission { false }
     user
     recruitment

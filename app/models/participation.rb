@@ -1,4 +1,4 @@
-class Partipication < ApplicationRecord
+class Participation < ApplicationRecord
   belongs_to :user
   belongs_to :recruitment
   validates :user_id, presence: true
