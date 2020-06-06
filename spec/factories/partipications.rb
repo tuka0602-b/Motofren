@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :partipication do
     permission { false }
-    user { nil }
-    recruitment { nil }
+    user
+    recruitment
   end
 end
