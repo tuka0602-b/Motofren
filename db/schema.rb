@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_06_06_011041) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
+    t.string "prefecture", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_011041) do
   create_table "recruitments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 50, null: false
     t.text "content", limit: 255, null: false
-    t.datetime "date"
+    t.date "date"
     t.string "picture"
     t.bigint "user_id"
     t.bigint "area_id"

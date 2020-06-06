@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    it "メールアドレスが256文字を超える" do
+    it "メールアドレスが255文字を超える" do
       user.email = "a" * 244 + "@example.com"
       expect(user).not_to be_valid
     end
