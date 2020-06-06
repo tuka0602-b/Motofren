@@ -5,13 +5,13 @@ RSpec.describe Recruitment, type: :model do
   let(:area) { create(:area) }
   let(:recruitment) { build(:recruitment, user: user, area: area) }
 
-  context "recruitmentが有効な状態になる" do
+  context "募集が有効な状態になる" do
     it "タイトル、本文、user_id、area_idがある" do
       expect(recruitment).to be_valid
     end
   end
 
-  context "recruitmentが無効な状態になる" do
+  context "募集が無効な状態になる" do
     it "タイトルがない" do
       recruitment.title = ""
       expect(recruitment).not_to be_valid
@@ -41,5 +41,16 @@ RSpec.describe Recruitment, type: :model do
       recruitment.area_id = nil
       expect(recruitment).not_to be_valid
     end
+  end
+
+  it "募集が削除されると関連するトークルームが削除されること" do
+    recruitment.save
+    expect { recruitment.destroy }.to change(TalkRoom, :count).by(-1)
+  end
+
+  it "募集が削除されると関連する参加も削除されること" do
+    recruitment.save
+    user.participations.create!(recruitment: recruitment)
+    expect { recruitment.destroy }.to change(Participation, :count).by(-1)
   end
 end

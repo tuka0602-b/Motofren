@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :message do
     content { "テストメッセージ" }
-    user
+    participation
     talk_room
   end
 end
