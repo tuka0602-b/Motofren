@@ -113,22 +113,15 @@ RSpec.describe User, type: :model do
   it "ユーザーを削除すると関連する募集投稿も削除されること" do
     area = create(:area)
     user.save
-    user.recruitments.create!(title: "テスト募集", content: "集まれー", area: area)
+    user.recruitments.create!(title: "test recruitment", content: "recruitment hoge", area: area)
     expect { user.destroy }.to change(Recruitment, :count).by(-1)
   end
 
-  it "ユーザーを削除すると関連するトークルームも削除されること" do
-    area = create(:area)
+  it "ユーザーを削除すると関連するメッセージも削除されること" do
+    talk_room = create(:talk_room)
     user.save
-    user.recruitments.create!(title: "テスト募集", content: "集まれー", area: area)
-    expect { user.destroy }.to change(TalkRoom, :count).by(-1)
-  end
-
-  it "ユーザーを削除すると関連する参加も削除されること" do
-    recruitment = create(:recruitment)
-    user.save
-    user.participations.create!(recruitment: recruitment)
-    expect { user.destroy }.to change(Participation, :count).by(-1)
+    user.messages.create!(talk_room: talk_room, content: "message hoge")
+    expect { user.destroy }.to change(Message, :count).by(-1)
   end
 
   it "フォロー・アンフォローができること" do

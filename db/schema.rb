@@ -51,23 +51,13 @@ ActiveRecord::Schema.define(version: 2020_06_06_011041) do
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", limit: 255, null: false
-    t.bigint "participation_id"
+    t.bigint "user_id"
     t.bigint "talk_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["participation_id", "created_at"], name: "index_messages_on_participation_id_and_created_at"
-    t.index ["participation_id"], name: "index_messages_on_participation_id"
     t.index ["talk_room_id"], name: "index_messages_on_talk_room_id"
-  end
-
-  create_table "participations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.boolean "permission"
-    t.bigint "user_id"
-    t.bigint "recruitment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recruitment_id"], name: "index_participations_on_recruitment_id"
-    t.index ["user_id"], name: "index_participations_on_user_id"
+    t.index ["user_id", "created_at"], name: "index_messages_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "recruitment_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -133,10 +123,8 @@ ActiveRecord::Schema.define(version: 2020_06_06_011041) do
   add_foreign_key "image_post_likes", "image_posts"
   add_foreign_key "image_post_likes", "users"
   add_foreign_key "image_posts", "users"
-  add_foreign_key "messages", "participations"
   add_foreign_key "messages", "talk_rooms"
-  add_foreign_key "participations", "recruitments"
-  add_foreign_key "participations", "users"
+  add_foreign_key "messages", "users"
   add_foreign_key "recruitment_likes", "recruitments"
   add_foreign_key "recruitment_likes", "users"
   add_foreign_key "recruitments", "areas"

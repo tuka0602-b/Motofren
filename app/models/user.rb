@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :like_image_posts, through: :image_post_likes, source: :image_post
   has_many :comments, dependent: :destroy
   has_many :recruitments, dependent: :destroy
-  has_many :participations, dependent: :destroy
+  has_many :messages, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }

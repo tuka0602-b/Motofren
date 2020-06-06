@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  let(:participation) { create(:participation) }
+  let(:user) { create(:user) }
   let(:talk_room) { create(:talk_room) }
-  let(:message) { build(:message, participation: participation, talk_room: talk_room) }
+  let(:message) { build(:message, user: user, talk_room: talk_room) }
 
   context "メッセージが有効な状態になる" do
-    it "participation_id, talk_room_id, メッセージがある" do
+    it "user_id, talk_room_id, メッセージがある" do
       expect(message).to be_valid
     end
   end
 
   context "メッセージが無効な状態になる" do
-    it "participation_idがない" do
-      message.participation_id = nil
+    it "user_idがない" do
+      message.user_id = nil
       expect(message).not_to be_valid
     end
 
