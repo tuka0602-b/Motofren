@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :recruitment_like do
-    user { nil }
-    recruitment { nil }
+    user
+    recruitment
   end
 end

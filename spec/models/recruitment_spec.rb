@@ -47,4 +47,10 @@ RSpec.describe Recruitment, type: :model do
     recruitment.save
     expect { recruitment.destroy }.to change(TalkRoom, :count).by(-1)
   end
+
+  it "募集が削除されると関連する募集いいね！が削除されること" do
+    recruitment.save
+    user.recruitment_likes.create!(recruitment: recruitment)
+    expect { recruitment.destroy }.to change(RecruitmentLike, :count).by(-1)
+  end
 end

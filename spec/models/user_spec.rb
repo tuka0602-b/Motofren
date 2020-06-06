@@ -124,6 +124,13 @@ RSpec.describe User, type: :model do
     expect { user.destroy }.to change(Message, :count).by(-1)
   end
 
+  it "ユーザーを削除すると関連する募集いいね！も削除されること" do
+    recruitment = create(:recruitment)
+    user.save
+    user.recruitment_likes.create!(recruitment: recruitment)
+    expect { user.destroy }.to change(RecruitmentLike, :count).by(-1)
+  end
+
   it "フォロー・アンフォローができること" do
     mario = create(:user)
     luige = create(:user)
