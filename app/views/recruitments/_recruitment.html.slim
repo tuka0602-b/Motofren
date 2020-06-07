@@ -1,0 +1,20 @@
+.card.mb-4
+  = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 480px;")
+  .card-body
+    .row
+      .col-md-9
+        h2.card-title.mb-1
+          = recruitment.title
+      .col-md-3
+        i.far.fa-heart いいね！
+    = gravatar_for(recruitment.user, size: 40)
+    span.card-subtitle.mb-2
+      = link_to recruitment.user.name, recruitment.user, class: "text-muted"
+    p.card-text
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!
+    = link_to "Read More →", recruitment, class: "btn btn-primary", remote: true
+    .modal#recruitment-modal tabindex="-1" role="dialog" aria-hidden="true"
+  .card-footer.text-muted
+    |  Posted on January 1, 2017 by 
+    a[href="#"]
+      | Start Bootstrap

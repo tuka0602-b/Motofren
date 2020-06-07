@@ -1,8 +1,5 @@
 class RecruitmentsController < ApplicationController
   before_action :correct_user, only: [:edit, :destroy]
-  def index
-    @recruitment = Recruitment.recent.all
-  end
 
   def show
     @recruitment = Recruitment.find(params[:id])
@@ -15,7 +12,7 @@ class RecruitmentsController < ApplicationController
   def create
     @recruitment = current_user.recruitments.build(recruitment_params)
     if @recruitment.save
-      redirect_to @recruitment, notice: '募集を投稿しました'
+      redirect_to root_url, notice: '募集を投稿しました'
     else
       render 'new'
     end
