@@ -9,12 +9,16 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
   models:
     image_post: 画像投稿
+    recruitment: 募集投稿
   attributes:
     id: ID
     picture: 画像
     content: コメント
     created_at: 投稿日時
     updated_at: 更新日時
+    title: タイトル
+    area: エリア
+    date: 日にち
   date:
     abbr_day_names:
     - 日

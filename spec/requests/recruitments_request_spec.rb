@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Recruitments", type: :request do
-
   describe "GET /index" do
     it "returns http success" do
       get "/recruitments/index"
@@ -29,5 +28,4 @@ RSpec.describe "Recruitments", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

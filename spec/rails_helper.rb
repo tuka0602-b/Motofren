@@ -68,4 +68,5 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers
   config.include OmniauthMacros, type: :system
+  config.include SelectDateHelper, type: :system
 end

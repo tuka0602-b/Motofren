@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Devise::Users", type: :system do
-  include NavbarSupport
+  include NavbarHelper
 
   let(:user) { create(:user) }
   let(:unregistered_user) { build(:user) }

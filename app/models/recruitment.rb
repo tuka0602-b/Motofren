@@ -4,10 +4,10 @@ class Recruitment < ApplicationRecord
   has_many :talk_rooms, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
   validates :user_id, presence: true
-  validates :area_id, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 255 }
   after_create :create_talk_room
+  scope :recent, -> { order(created_at: :desc) }
 
   private
 
