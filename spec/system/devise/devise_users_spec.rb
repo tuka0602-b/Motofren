@@ -125,7 +125,7 @@ RSpec.describe "Devise::Users", type: :system do
 
       expect do
         click_link "はい"
-        page.accept_confirm "本当によろしいですか?"
+        accept_confirm "本当によろしいですか?"
         expect(page).to have_content "アカウント登録もしくはログインしてください。"
       end.to change(User, :count).by(-1)
     end
@@ -143,7 +143,7 @@ RSpec.describe "Devise::Users", type: :system do
       click_dropdown
       click_link "アカウント設定"
       click_link "はい"
-      page.accept_confirm "本当によろしいですか?"
+      accept_confirm "本当によろしいですか?"
       expect(page).to have_content "ゲストユーザーは削除できません。"
     end
   end

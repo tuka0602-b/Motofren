@@ -1,5 +1,8 @@
 .card.mb-4
-  = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 480px;")
+  - unless recruitment.picture.blank?
+    = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 480px;")
+  - else
+    img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap"
   .card-body
     .row
       .col-md-9
@@ -11,7 +14,7 @@
     span.card-subtitle.mb-2
       = link_to recruitment.user.name, recruitment.user, class: "text-muted"
     p.card-text
-      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!
+      = recruitment.content
     = link_to "Read More →", recruitment, class: "btn btn-primary", remote: true
     .modal#recruitment-modal tabindex="-1" role="dialog" aria-hidden="true"
   .card-footer.text-muted

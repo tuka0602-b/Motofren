@@ -20,6 +20,7 @@ RSpec.describe "ImagePosts", type: :request do
         sign_in(other_user)
         expect do
           delete image_post_path(image_post)
+          expect(response).to redirect_to root_path
         end.not_to change(user.image_posts, :count)
       end
     end

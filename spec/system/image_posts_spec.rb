@@ -56,7 +56,7 @@ RSpec.describe "ImagePosts", type: :system do
           expect(page).to have_selector "h4", text: image_post.content
           expect do
             click_link "削除"
-            page.accept_confirm "削除しますか？"
+            accept_confirm "削除しますか？"
             expect(page).to have_content "画像を削除しました"
           end.to change(user.image_posts, :count).by(-1)
         end
