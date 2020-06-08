@@ -1,5 +1,5 @@
 class RecruitmentsController < ApplicationController
-  before_action :correct_user, only: [:edit, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def show
     @recruitment = Recruitment.find(params[:id])
@@ -19,6 +19,14 @@ class RecruitmentsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @recruitment.update(recruitment_params)
+      redirect_to root_url, notice: '募集を編集しました'
+    else
+      render 'edit'
+    end
   end
 
   def destroy

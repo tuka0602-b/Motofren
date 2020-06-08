@@ -1,0 +1,17 @@
+= form_for(recruitment) do |f|
+  = render "shared/error_messages", object: f.object
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :area
+    = f.collection_select :area_id, Area.all, :id, :prefecture, { include_blank: false }, { class: 'form-control', size: 5 }
+  .form-group
+    = f.label :date
+    = f.date_field :date, class: 'form-control'
+  .form-group
+    = f.label :content, '内容'
+    = f.text_area :content, rows: 5, class: 'form-control'
+  .form-group
+    = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+  = f.submit '投稿する', class: 'btn btn-info'
