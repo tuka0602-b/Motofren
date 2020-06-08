@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
       get :image_liked
+      get :recruitment_liked
     end
   end
   resources :image_posts, only: [:show, :create, :destroy] do
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
   resources :recruitments
   resources :relationships, only: [:create, :destroy]
   resources :image_post_likes, only: [:create, :destroy]
+  resources :recruitment_likes, only: [:create, :destroy]
 end

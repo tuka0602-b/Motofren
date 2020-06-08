@@ -152,4 +152,16 @@ RSpec.describe User, type: :model do
     user.image_unlike(image_post)
     expect(user.image_like?(image_post)).to be_falsey
   end
+
+  it "募集投稿にいいね！ができること" do
+    recruitment = create(:recruitment)
+
+    user.save
+    expect(user.recruitment_like?(recruitment)).to be_falsey
+    user.recruitment_like(recruitment)
+    expect(user.recruitment_like?(recruitment)).to be_truthy
+    expect(recruitment.like_users.include?(user)).to be_truthy
+    user.recruitment_unlike(recruitment)
+    expect(user.recruitment_like?(recruitment)).to be_falsey
+  end
 end

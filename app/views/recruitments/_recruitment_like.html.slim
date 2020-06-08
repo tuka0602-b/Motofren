@@ -1,0 +1,4 @@
+= form_for(current_user.recruitment_likes.build, html: { style: "display: inline-block;" }, remote: true) do |f|
+  .= hidden_field_tag :recruitment_id, recruitment.id
+  = f.button type: "submit", class: "like-button" do
+    i.far.fa-heart

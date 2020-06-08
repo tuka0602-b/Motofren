@@ -1,0 +1,2 @@
+$("<%= "#recruitment_like_form_#{@recruitment.id}" %>").html("<%= escape_javascript(render('recruitments/recruitment_unlike', recruitment: @recruitment)) %>");
+$("<%= "#recruitment-likes-count-#{@recruitment.id}" %>").html("<%= escape_javascript(render('recruitments/likes_count', recruitment: @recruitment)) %>");

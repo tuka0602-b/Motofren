@@ -9,7 +9,14 @@
         h2.card-title.mb-1
           = recruitment.title
       .col-md-3
-        i.far.fa-heart いいね！
+        span id="recruitment_like_form_#{recruitment.id}"
+          - if current_user.recruitment_like?(recruitment)
+            = render 'recruitments/recruitment_unlike', recruitment: recruitment
+          - else
+            = render 'recruitments/recruitment_like', recruitment: recruitment
+        span id="recruitment-likes-count-#{recruitment.id}"
+          = render 'recruitments/likes_count', recruitment: recruitment
+
     = gravatar_for(recruitment.user, size: 40)
     span.card-subtitle.mb-2
       = link_to recruitment.user.name, recruitment.user, class: "text-muted"

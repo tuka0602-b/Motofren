@@ -1,0 +1,4 @@
+= form_for(current_user.recruitment_likes.find_by(recruitment_id: recruitment.id),
+            html: { method: :delete, style: "display: inline-block;" }, remote: true) do |f|
+  = f.button type: "submit", class: "unlike-button" do
+    i.fas.fa-heart

@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :recruitments, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
+  has_many :like_recruitments, through: :recruitment_likes, source: :recruitment
   has_many :messages, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
@@ -74,5 +75,17 @@ class User < ApplicationRecord
 
   def image_like?(image_post)
     like_image_posts.include?(image_post)
+  end
+
+  def recruitment_like(recruitment)
+    like_recruitments << recruitment
+  end
+
+  def recruitment_unlike(recruitment)
+    recruitment_likes.find_by(recruitment_id: recruitment.id).destroy
+  end
+
+  def recruitment_like?(recruitment)
+    like_recruitments.include?(recruitment)
   end
 end
