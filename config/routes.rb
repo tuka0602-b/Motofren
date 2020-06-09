@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'recruitments/index'
-  get 'recruitments/show'
-  get 'recruitments/new'
-  get 'recruitments/edit'
   root to: 'home#index'
   devise_for :users, controllers: { 
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -25,4 +21,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :image_post_likes, only: [:create, :destroy]
   resources :recruitment_likes, only: [:create, :destroy]
+  resources :talk_rooms, only: [:show]
 end

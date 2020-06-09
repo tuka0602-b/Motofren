@@ -10,6 +10,9 @@
       p= recruitment.user.name
       p= recruitment.content
       p= recruitment.date
+      ul
+        - recruitment.talk_rooms.each do |talk_room|
+          = link_to talk_room.name, talk_room
     .modal-footer
       button.btn.btn-secondary[type="button" data-dismiss="modal"]
         | Close
