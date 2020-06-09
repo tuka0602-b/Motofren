@@ -1,0 +1,20 @@
+- unless current_user?(message.user)
+  li.chat-left
+    .chat-avatar
+      = gravatar_for(message.user, size: 45)
+      .chat-name
+        = message.user.name
+    .chat-text
+      = message.content
+    .chat-hour
+      = message.created_at
+-else
+  li.chat-right
+    .chat-hour
+      = message.created_at
+    .chat-text
+      = message.content
+    .chat-avatar
+      = gravatar_for(message.user, size: 45)
+      .chat-name
+        = message.user.name

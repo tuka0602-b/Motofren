@@ -31,30 +31,7 @@
             .col-xl-8.col-lg-8.col-md-8.col-sm-9.col-9
               .chat-container
                 ul.chat-box.chatContainerScroll
-                  li.chat-left
-                    .chat-avatar
-                      img[src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"]
-                      .chat-name
-                        | Russell
-                    .chat-text
-                      | Hello, I'm Russell. 
-                      br
-                      | How can I help you today?
-                    .chat-hour
-                      | 08:55 
-                      span.fa.fa-check-circle
-                  li.chat-right
-                    .chat-hour
-                      | 08:56 
-                      span.fa.fa-check-circle
-                    .chat-text
-                      | Hi, Russell 
-                      br
-                      |  I need more information about Developer Plan.
-                    .chat-avatar
-                      img[src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"]
-                      .chat-name
-                        | Sam
+                  = render @messages
                   
                 .form-group.mt-3.mb-0
                   textarea.form-control[rows="3" placeholder="Type your message here..."]
