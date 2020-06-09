@@ -1,10 +1,6 @@
 class RecruitmentsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  def show
-    @recruitment = Recruitment.find(params[:id])
-  end
-
   def new
     @recruitment = current_user.recruitments.build
   end

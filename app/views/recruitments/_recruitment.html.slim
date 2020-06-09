@@ -1,12 +1,13 @@
 .card.mb-4
   - unless recruitment.picture.blank?
-    = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 480px;")
+    = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 400px;")
   - else
     img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap"
+
   .card-body
     .row
       .col-md-9
-        h2.card-title.mb-1
+        h4.card-title.mb-1
           = recruitment.title
       .col-md-3
         span id="recruitment_like_form_#{recruitment.id}"
@@ -18,12 +19,17 @@
           = render 'recruitments/likes_count', recruitment: recruitment
 
     = gravatar_for(recruitment.user, size: 40)
-    span.card-subtitle.mb-2
+    span.ml-1.card-subtitle.mb-2
       = link_to recruitment.user.name, recruitment.user, class: "text-muted"
-    p.card-text
-      = recruitment.content
-    = link_to "Read More →", recruitment, class: "btn btn-primary", remote: true
-    .modal#recruitment-modal tabindex="-1" role="dialog" aria-hidden="true"
+    p.card-text.mt-2
+      = "実施日 : #{recruitment.date}"
+    .card-text-area.mt-1.overflow-auto
+      p.card-text
+        = recruitment.content
+      ul
+        - recruitment.talk_rooms.each do |talk_room|
+          li= link_to talk_room.name, talk_room, class: "text-muted"
+
   .card-footer.text-muted
     |  Posted on January 1, 2017 by 
     a[href="#"]
