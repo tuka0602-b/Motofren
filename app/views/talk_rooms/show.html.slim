@@ -7,7 +7,7 @@
   .content-wrapper
     .row.gutters
       .col-xl-12.col-lg-12.col-md-12.col-sm-12.col-12
-        .card.m-0
+        .card.talk-room.m-0
           .row.no-gutters
             .col-xl-4.col-lg-4.col-md-4.col-sm-3.col-3
               .users-container
@@ -32,6 +32,5 @@
               .chat-container
                 ul.chat-box.chatContainerScroll
                   = render @messages
-                  
-                .form-group.mt-3.mb-0
-                  textarea.form-control[rows="3" placeholder="Type your message here..."]
+                
+                = render "shared/message_form"

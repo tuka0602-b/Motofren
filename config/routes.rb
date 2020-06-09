@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :image_post_likes, only: [:create, :destroy]
   resources :recruitment_likes, only: [:create, :destroy]
-  resources :talk_rooms, only: [:show]
+  resources :talk_rooms, only: [:show] do
+    resources :messages, only: [:create, :destroy]
+  end
 end

@@ -12,6 +12,7 @@
   li.chat-right
     .chat-hour
       = message.created_at
+      span= link_to "削除", talk_room_message_path(@talk_room, message), method: :delete
     .chat-text
       = message.content
     .chat-avatar
