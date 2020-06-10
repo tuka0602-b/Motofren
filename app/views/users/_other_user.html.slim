@@ -1,0 +1,7 @@
+.text-center.py-5
+  = gravatar_for(user)
+  .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
+    h4.font-weight-bold.my-4
+      = user.name
+    .text-muted.mb-4
+      = user.introduction

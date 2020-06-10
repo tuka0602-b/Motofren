@@ -1,0 +1,10 @@
+= link_to following_user_path(user), class: "d-inline-block text-dark" do
+  strong.mr-1
+    = user.following.count
+  span.text-muted
+    | フォロー
+= link_to followers_user_path(user), class: "d-inline-block text-dark ml-3" do
+  strong.mr-1#followers
+    = user.followers.count
+  span.text-muted
+    | フォロワー
