@@ -12,5 +12,11 @@ hr.m-0
     .container.mt-4
       .row.text-center#image_posts
         = render @image_posts
-      .row.mt-2.mb-3
-        = paginate @image_posts
+      .page-load-status.text-center.text-muted
+        .infinite-scroll-request
+          | Loading...
+          = paginate @image_posts
+        p.infinite-scroll-last
+          | end of contents
+        p.infinite-scroll-error
+          | No more pages to load

@@ -31,7 +31,6 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content user.introduction
           expect(page).to have_selector "#new_image_post"
           expect(page).to have_selector ".post-img-list"
-          expect(page).to have_selector "ul.pagination"
           expect(page).to have_content "5フォロー"
           expect(page).to have_content "0フォロワー"
         end
