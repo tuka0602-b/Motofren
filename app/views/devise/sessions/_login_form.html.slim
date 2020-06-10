@@ -17,11 +17,6 @@
     | または
   hr.container
   .text-center
-    = link_to user_facebook_omniauth_authorize_path do
-      button type="button" class="social-btn facebook mr-4 mb-2" data-toggle="modal" data-target="#ModalCSS"<i class="fab fa-facebook-f fa-fw" aria-hidden="true"></i>
-    = link_to user_twitter_omniauth_authorize_path do
-      button type="button" class="social-btn twitter mr-4 mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-twitter fa-fw" aria-hidden="true"></i>
-    = link_to user_google_oauth2_omniauth_authorize_path do
-      button type="button" class="social-btn google mb-2" data-toggle="modal" data-target="#ModalHTML"<i class="fab fa-google fa-fw" aria-hidden="true"></i>
+    = render 'devise/shared/sns_button'
   .text-center.mt-2
     = link_to "アカウントをお持ちでないですか？", new_user_registration_path
