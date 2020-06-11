@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @image_post = ImagePost.find(params[:id])
     @user = @image_post.user
     @users = @image_post.like_users.page(params[:page])
-    render 'show_follow'
+    render 'show_liked_image'
   end
 
   def recruitment_liked

@@ -1,0 +1,15 @@
+.container
+  h3.text-muted.mt-2= @title
+  .row.mt-3
+    .col-md-5
+      .followers-box.full-width
+        .followers-list
+          .followers-body
+            = image_tag(@image_post.picture.url, class: "img-fluid mb-3 rounded")
+            .post-content
+              = simple_format(h(@image_post.content), {}, sanitize: false, wrapper_tag: "div")
+              ul.post-meta.list-inline
+                = render 'image_posts/status', user: @user, image_post: @image_post
+    - if @users.any?
+      .col-md-7.col-lg-offset-2
+        = render @users
