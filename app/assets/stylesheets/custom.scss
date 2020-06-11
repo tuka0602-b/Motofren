@@ -328,6 +328,19 @@ body {
   }
 }
 
+.comment-area {
+  max-height: 600px;
+  @media(max-width: 1200px) {
+    max-height: 500px;
+  }
+  @media(max-width: 990px) {
+    max-height: 380px;
+  }
+  @media(max-width: 768px) {
+    max-height: 600px;
+  }
+}
+
 
 
 

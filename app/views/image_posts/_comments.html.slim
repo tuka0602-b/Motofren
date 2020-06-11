@@ -5,4 +5,4 @@
       span.ml-1.text-muted= comment.user.name
       span.ml-2= comment.content
       - if current_user?(comment.user)
-        span= link_to "delete", image_post_comment_path(@image_post, comment), method: :delete, remote: true
+        span.ml-4= link_to "delete", image_post_comment_path(@image_post, comment), method: :delete, remote: true, class: "text-muted"
