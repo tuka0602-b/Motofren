@@ -5,12 +5,10 @@ RSpec.describe "Relationships", type: :system do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
 
-    before do
+    it "ユーザーのフォローとアンフォロー", js: true do
       sign_in(user)
       visit user_path(other_user)
-    end
 
-    it "ユーザーのフォローとアンフォロー", js: true do
       expect do
         click_on "フォローする"
         expect(page).to have_selector "input[value$='フォロー中']"

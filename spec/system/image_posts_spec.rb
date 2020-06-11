@@ -19,16 +19,12 @@ RSpec.describe "ImagePosts", type: :system do
       end
     end
 
-    context "画像が選択されていないとき" do
+    context "画像が選択されていない、投稿内容が140文字を超えているとき" do
       it "画像投稿が出来ないこと" do
         click_button "投稿"
         expect(page).to have_selector "li.error-list", text: "画像を選択してください"
         expect(page).not_to have_selector "img[src$='sky.png']"
-      end
-    end
 
-    context "投稿内容が140文字を超えているとき" do
-      it "画像投稿が出来ないこと" do
         attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
         fill_in "コメント", with: "a" * 141
         click_button "投稿"
