@@ -20,7 +20,7 @@ class ImagePostsController < ApplicationController
 
   def destroy
     @image_post.destroy
-    flash[:notice] = "画像を削除しました"
+    flash[:notice] = '画像を削除しました'
     redirect_to @image_post.user
   end
 

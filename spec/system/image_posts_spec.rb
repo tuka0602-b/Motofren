@@ -50,10 +50,10 @@ RSpec.describe "ImagePosts", type: :system do
       context "自分の画像投稿の場合" do
         let(:login_user) { user }
 
-        it "投稿者名、本文、コメント数、いいね！、削除が表示されること" do
+        it "投稿本文、投稿者名、いいね！、削除が表示されること" do
+          expect(page).to have_selector "div", text: image_post.content
           expect(page).to have_selector "a", text: user.name
           expect(page).to have_selector "#image_like_form"
-          expect(page).to have_selector "h4", text: image_post.content
           expect do
             click_link "削除"
             accept_confirm "削除しますか？"
@@ -65,10 +65,10 @@ RSpec.describe "ImagePosts", type: :system do
       context "他人の画像投稿の場合" do
         let(:login_user) { other_user }
 
-        it "投稿者名、コメント数、いいね！が表示されること" do
+        it "投稿本文、投稿者名、いいね！が表示されること" do
+          expect(page).to have_selector "div", text: image_post.content
           expect(page).to have_selector "a", text: user.name
           expect(page).to have_selector "#image_like_form"
-          expect(page).to have_selector "h4", text: image_post.content
           expect(page).not_to have_selector "a", text: "削除"
         end
       end

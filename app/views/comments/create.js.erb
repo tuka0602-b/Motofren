@@ -4,4 +4,5 @@
   $("#comments").html("<%= escape_javascript(render('image_posts/comments', image_post: @image_post)) %>");
   $("#comment_content").val('');
   $(".error-list").css('display', 'none');
+  $(".field_with_errors").removeClass("field_with_errors")
 <% end %>

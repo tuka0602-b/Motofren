@@ -1,38 +1,17 @@
 .container
   .row.mt-3.justify-content-center
     .col-md-7.mb-3
-      article
-        = image_tag(@image_post.picture.url, class: "img-fluid mb-3 rounded")
-        .post-content
-          h4
-            = @image_post.content
-          ul.post-meta.list-inline
-            li.list-inline-item
-              i.fa.fa-user-circle-o
-              a[href="#"]
-                = gravatar_for(@user, size: 40)
-                = link_to @user.name, user_path(@user)
-            li.list-inline-item
-              i.fa.fa-calendar-o
-              a[href="#"]
-                | コメント 10件
-            li.list-inline-item
-              span#image_like_form
-                - if current_user.image_like?(@image_post)
-                  = render 'image_posts/image_unlike', image_post: @image_post
-                - else
-                  = render 'image_posts/image_like', image_post: @image_post
-              span#likes-count
-                = render 'image_posts/likes_count', image_post: @image_post
-            - if current_user?(@image_post.user)
-              li.list-inline-item
-                = link_to "削除", image_post_path(@image_post), data: { confirm: "削除しますか？" }, method: :delete
-          hr.mb-3
-            #comment_form
-              = render 'shared/comment_form'
+      = image_tag(@image_post.picture.url, class: "img-fluid mb-3 rounded")
+      .post-content
+        = simple_format(h(@image_post.content), {}, sanitize: false, wrapper_tag: "div")
+        ul.post-meta.list-inline
+          = render 'status', user: @user, image_post: @image_post
+        hr.mb-3
+          #comment_form
+            = render 'shared/comment_form'
     .col-md-5
       div
         h4.sidebar-title
-          | コメント
+          | コメント一覧
         ul.list-unstyled#comments
           = render 'comments', image_post: @image_post
