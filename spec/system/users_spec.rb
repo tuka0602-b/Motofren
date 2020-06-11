@@ -52,44 +52,4 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
-
-  describe "Followingページ" do
-    context "未ログインの場合" do
-      let(:url) { following_user_path(user) }
-
-      it_behaves_like "ログインページにリダイレクトされること"
-    end
-
-    context "ログイン済みの場合" do
-      it "フォロー中のユーザーが表示されること" do
-        sign_in(user)
-        visit following_user_path(user)
-        expect(page).to have_selector "a", text: user.name
-        expect(page).to have_content user.following.count
-        expect(page).to have_selector "a", text: other_user.name
-        expect(page).to have_content other_user.following.count
-        # 名前をクリックするとそのユーザーのプロフィールに移動する
-        click_link other_user.name
-        expect(page).to have_current_path user_path(other_user)
-      end
-    end
-  end
-
-  describe "Followersページ" do
-    context "未ログインの場合" do
-      let(:url) { followers_user_path(user) }
-
-      it_behaves_like "ログインページにリダイレクトされること"
-    end
-
-    context "ログイン済みの場合" do
-      it "フォロワーが表示されること" do
-        sign_in(user)
-        visit followers_user_path(user)
-        expect(page).to have_selector "a", text: user.name
-        expect(page).to have_content user.followers.count
-        expect(page).not_to have_content other_user.name
-      end
-    end
-  end
 end

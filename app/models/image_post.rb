@@ -1,7 +1,7 @@
 class ImagePost < ApplicationRecord
   belongs_to :user
   has_many :image_post_likes, dependent: :destroy
-  has_many :like_users, through: :image_post_likes, source: :user
+  has_many :liked_users, through: :image_post_likes, source: :user
   has_many :comments, dependent: :destroy
   has_many :commented_users, through: :comments, source: :user
   validates :picture, presence: { message: "を選択してください" }

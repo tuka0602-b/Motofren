@@ -24,6 +24,13 @@ class ImagePostsController < ApplicationController
     redirect_to @image_post.user
   end
 
+  def liked_users
+    @title = "いいね！したユーザー"
+    @image_post = ImagePost.find(params[:id])
+    @user = @image_post.user
+    @users = @image_post.liked_users.page(params[:page])
+  end
+
   private
 
   def image_post_params

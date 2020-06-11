@@ -19,14 +19,6 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def image_liked
-    @title = "いいね！したユーザー"
-    @image_post = ImagePost.find(params[:id])
-    @user = @image_post.user
-    @users = @image_post.like_users.page(params[:page])
-    render 'show_liked_image'
-  end
-
   def recruitment_liked
     @title = "いいね！したユーザー"
     @recruitment = Recruitment.find(params[:id])

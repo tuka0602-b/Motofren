@@ -74,8 +74,4 @@ RSpec.describe "ImagePosts", type: :system do
       end
     end
   end
-
-  describe "いいね！したユーザー一覧ページ" do
-    it "自分以外のいいねしたユーザーが表示されること"
-  end
 end

@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :image_post_likes, dependent: :destroy
-  has_many :like_image_posts, through: :image_post_likes, source: :image_post
+  has_many :liked_image_posts, through: :image_post_likes, source: :image_post
   has_many :comments, dependent: :destroy
   has_many :recruitments, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
@@ -66,7 +66,7 @@ class User < ApplicationRecord
   end
 
   def image_like(image_post)
-    like_image_posts << image_post
+    liked_image_posts << image_post
   end
 
   def image_unlike(image_post)
@@ -74,7 +74,7 @@ class User < ApplicationRecord
   end
 
   def image_like?(image_post)
-    like_image_posts.include?(image_post)
+    liked_image_posts.include?(image_post)
   end
 
   def recruitment_like(recruitment)
