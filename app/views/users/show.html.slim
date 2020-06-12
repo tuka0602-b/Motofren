@@ -12,6 +12,7 @@ hr.m-0
     .container.mt-4
       .row.text-center#image_posts
         = render @image_posts
+      / 必ずページネーションを機能させるために画像は最低でも15枚以上持たせておくこと
       .page-load-status.text-center.text-muted
         .infinite-scroll-request
           | Loading...
