@@ -5,5 +5,9 @@ FactoryBot.define do
     end
     content { Faker::Lorem.sentences }
     user
+
+    trait :with_comments do
+      after(:create) { |image_post| create_list(:comment, 5, image_post: image_post) }
+    end
   end
 end

@@ -13,5 +13,6 @@
       div
         h4.sidebar-title
           | コメント一覧
-        ul.list-unstyled#comments
-          = render 'comments', image_post: @image_post
+        - if @image_post.comments.any?
+          ul.list-unstyled#comments
+            = render 'comments', image_post: @image_post

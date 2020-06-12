@@ -24,18 +24,14 @@ RSpec.describe "Comments", type: :system do
       end
     end
 
-    context "コメント内容がない場合" do
+    context "コメント内容がない、またはコメントが140文字を超えている場合" do
       it "コメントを投稿できないこと" do
         expect do
           fill_in "コメントを記述", with: ""
           click_button "コメントする"
           expect(page).to have_selector "li.error-list", text: "コメントを入力してください"
         end.not_to change(user.comments, :count)
-      end
-    end
 
-    context "コメントが140文字を超えている場合" do
-      it "コメントを投稿できないこと" do
         expect do
           fill_in "コメントを記述", with: "a" * 141
           click_button "コメントする"
@@ -60,7 +56,7 @@ RSpec.describe "Comments", type: :system do
     context "他人のコメントの場合" do
       let(:login_user) { create(:user, name: "other_user") }
 
-      it "削除できないこと" do
+      it "削除リンクが表示されないこと" do
         expect(page).not_to have_selector "a", text: "delete"
       end
     end

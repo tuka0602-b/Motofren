@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :correct_user, only: :destroy
+
   def create
     @image_post = ImagePost.find(params[:image_post_id])
     @comment = current_user.comments.build(comment_params)
@@ -7,10 +9,17 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id]).destroy
+    @comment.destroy
   end
+
+  private
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def correct_user
+    @comment = current_user.comments.find_by(id: params[:id])
+    redirect_to root_url if @comment.nil?
   end
 end
