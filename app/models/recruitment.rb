@@ -3,7 +3,7 @@ class Recruitment < ApplicationRecord
   belongs_to :area
   has_one :talk_room, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
-  has_many :like_users, through: :recruitment_likes, source: :user
+  has_many :liked_users, through: :recruitment_likes, source: :user
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 255 }

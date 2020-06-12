@@ -160,7 +160,7 @@ RSpec.describe User, type: :model do
     expect(user.recruitment_like?(recruitment)).to be_falsey
     user.recruitment_like(recruitment)
     expect(user.recruitment_like?(recruitment)).to be_truthy
-    expect(recruitment.like_users.include?(user)).to be_truthy
+    expect(recruitment.liked_users.include?(user)).to be_truthy
     user.recruitment_unlike(recruitment)
     expect(user.recruitment_like?(recruitment)).to be_falsey
   end

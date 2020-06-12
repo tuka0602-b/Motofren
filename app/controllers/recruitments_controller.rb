@@ -31,6 +31,13 @@ class RecruitmentsController < ApplicationController
     redirect_to root_url
   end
 
+  def liked_users
+    @title = "いいね！したユーザー"
+    @recruitment = Recruitment.find(params[:id])
+    @user = @recruitment.user
+    @users = @recruitment.liked_users.page(params[:page])
+  end
+
   private
 
   def recruitment_params

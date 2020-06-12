@@ -5,7 +5,7 @@ RSpec.describe "ImagePostLikes", type: :system do
     let(:user) { create(:user) }
     let(:image_post) { create(:image_post) }
 
-    it "画像投稿にいいね！のつけ外しができること" do
+    it "画像投稿にいいね！のつけ外しができること", js: true do
       sign_in(user)
       visit image_post_path(image_post)
       expect(page).to have_css ".like-button"

@@ -1,0 +1,27 @@
+.container
+  h3.text-muted.mt-2= @title
+  .row.mt-3
+    .col-md-5
+      .card.mb-4
+        = render 'recruitments/recruitment_img', recruitment: @recruitment
+        .card-body
+          .row
+            .col-md-8
+              h4.card-title.mb-1
+                = @recruitment.title
+            .col-md-4
+              = render 'recruitments/like_form', recruitment: @recruitment
+          .recruitment-content
+            = render 'recruitments/content', recruitment: @recruitment
+        .card-footer
+          .row
+            .col-md-4.align-self-center
+              - if current_user?(@recruitment.user)
+                span.mr-3= link_to "編集", edit_recruitment_path(@recruitment)
+                span.mr-3= link_to "削除", @recruitment, data: { confirm: "削除しますか？" }, method: :delete
+            .col-md-8.text-right
+              = link_to @recruitment.user.name, @recruitment.user, class: "text-muted"
+              span.ml-1= gravatar_for(@recruitment.user, size: 40)
+    - if @users.any?
+      .col-md-7.col-lg-offset-2
+        = render @users
