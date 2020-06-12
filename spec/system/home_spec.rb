@@ -25,7 +25,7 @@ RSpec.describe "Home", type: :system do
 
         it "募集一覧と、募集に編集、削除リンクが表示されること" do
           expect(page).to have_selector "h4.card-title", text: "テスト募集"
-          expect(page).to have_selector "p.card-text", text: "テスト募集に集まれー！"
+          expect(page).to have_selector ".card-text", text: "テスト募集に集まれー！"
           expect(page).to have_selector "a", text: "編集"
           expect(page).to have_selector "a", text: "削除"
 
@@ -43,7 +43,7 @@ RSpec.describe "Home", type: :system do
 
         it "募集一覧が表示されること" do
           expect(page).to have_selector "h4.card-title", text: "テスト募集"
-          expect(page).to have_selector "p.card-text", text: "テスト募集に集まれー！"
+          expect(page).to have_selector ".card-text", text: "テスト募集に集まれー！"
           expect(page).not_to have_selector "a", text: "編集"
           expect(page).not_to have_selector "a", text: "削除"
         end

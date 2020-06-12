@@ -1,6 +1,6 @@
 p.card-text.mt-2
   = "実施日 : #{recruitment.date}"
 .card-text-area.mt-1.overflow-auto
-  p.card-text
-    = recruitment.content
+  .card-text.mb-3
+    = simple_format(h(recruitment.content), {}, sanitize: false, wrapper_tag: "div")
   = link_to recruitment.talk_room.name, recruitment.talk_room, class: "text-muted"
