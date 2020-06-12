@@ -1,37 +1,20 @@
 .card.mb-4
-  - unless recruitment.picture.blank?
-    = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 400px;")
-  - else
-    img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap"
-
+  = render 'recruitments/recruitment_img', recruitment: recruitment
   .card-body
     .row
       .col-md-9
         h4.card-title.mb-1
           = recruitment.title
       .col-md-3
-        span id="recruitment_like_form_#{recruitment.id}"
-          - if current_user.recruitment_like?(recruitment)
-            = render 'recruitments/recruitment_unlike', recruitment: recruitment
-          - else
-            = render 'recruitments/recruitment_like', recruitment: recruitment
-        span id="recruitment-likes-count-#{recruitment.id}"
-          = render 'recruitments/likes_count', recruitment: recruitment
-
-    = gravatar_for(recruitment.user, size: 40)
-    span.ml-1.card-subtitle.mb-2
-      = link_to recruitment.user.name, recruitment.user, class: "text-muted"
-    p.card-text.mt-2
-      = "実施日 : #{recruitment.date}"
-    .card-text-area.mt-1.overflow-auto
-      p.card-text
-        = recruitment.content
-      = link_to recruitment.talk_room.name, recruitment.talk_room, class: "text-muted"
-
-  .card-footer.text-muted
-    |  Posted on January 1, 2017 by 
-    a[href="#"]
-      | Start Bootstrap
-    - if current_user?(recruitment.user)
-      span= link_to "編集", edit_recruitment_path(recruitment)
-      span= link_to "削除", recruitment, data: { confirm: "削除しますか？" }, method: :delete
+        = render 'recruitments/like_form', recruitment: recruitment
+    .recruitment-content
+      = render 'recruitments/content', recruitment: recruitment
+  .card-footer
+    .row
+      .col-md-4.align-self-center
+        - if current_user?(recruitment.user)
+          span.mr-3= link_to "編集", edit_recruitment_path(recruitment)
+          span.mr-3= link_to "削除", recruitment, data: { confirm: "削除しますか？" }, method: :delete
+      .col-md-8.text-right
+        = link_to recruitment.user.name, recruitment.user, class: "text-muted"
+        span.ml-1= gravatar_for(recruitment.user, size: 40)

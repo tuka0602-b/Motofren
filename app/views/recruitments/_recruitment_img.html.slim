@@ -1,0 +1,4 @@
+- unless recruitment.picture.blank?
+  = image_tag(recruitment.picture.url, class: "card-img-top", style: "max-height: 400px;")
+- else
+  img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap"

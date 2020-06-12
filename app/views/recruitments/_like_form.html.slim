@@ -1,0 +1,7 @@
+span id="recruitment_like_form_#{recruitment.id}"
+  - if current_user.recruitment_like?(recruitment)
+    = render 'recruitments/recruitment_unlike', recruitment: recruitment
+  - else
+    = render 'recruitments/recruitment_like', recruitment: recruitment
+span id="recruitment-likes-count-#{recruitment.id}"
+  = render 'recruitments/likes_count', recruitment: recruitment

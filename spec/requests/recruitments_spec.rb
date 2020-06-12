@@ -5,6 +5,27 @@ RSpec.describe "Recruitments", type: :request do
   let(:other_user) { create(:user) }
   let!(:recruitment) { create(:recruitment, user: user) }
 
+  describe "UPDATE recruitment_path" do
+    let(:recruitment_params) { FactoryBot.attributes_for(:recruitment, title: "custom recruit") }
+
+    context "自分の募集投稿の場合" do
+      it "更新できること" do
+        sign_in(user)
+        patch recruitment_path(recruitment), params: { recruitment: recruitment_params }
+        expect(recruitment.reload.title).to eq "custom recruit"
+      end
+    end
+
+    context "他人の募集投稿の場合" do
+      it "更新できないこと" do
+        sign_in(other_user)
+        patch recruitment_path(recruitment), params: { recruitment: recruitment_params }
+        expect(recruitment.reload.title).not_to eq "custom recruit"
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+
   describe "DELETE recruitment_path" do
     context "自分の募集投稿の場合" do
       it "削除できること" do
