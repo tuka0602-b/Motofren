@@ -26,9 +26,7 @@
     .card-text-area.mt-1.overflow-auto
       p.card-text
         = recruitment.content
-      ul
-        - recruitment.talk_rooms.each do |talk_room|
-          li= link_to talk_room.name, talk_room, class: "text-muted"
+      = link_to recruitment.talk_room.name, recruitment.talk_room, class: "text-muted"
 
   .card-footer.text-muted
     |  Posted on January 1, 2017 by 

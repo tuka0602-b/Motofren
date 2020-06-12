@@ -1,7 +1,7 @@
 class Recruitment < ApplicationRecord
   belongs_to :user
   belongs_to :area
-  has_many :talk_rooms, dependent: :destroy
+  has_one :talk_room, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
   has_many :like_users, through: :recruitment_likes, source: :user
   validates :user_id, presence: true
@@ -15,7 +15,7 @@ class Recruitment < ApplicationRecord
   private
 
   def create_talk_room
-    talk_rooms.create!(name: "#{title}-room")
+    create_talk_room!(name: "#{title}-room")
   end
 
   def picture_size
