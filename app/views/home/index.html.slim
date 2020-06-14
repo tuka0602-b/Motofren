@@ -10,11 +10,11 @@
         h5.card-header
           | Search
         .card-body
-          .input-group
-            input.form-control[type="text" placeholder="Search for..."]
-            span.input-group-btn
-              button.btn.btn-secondary[type="button"]
-                | Go!
+          = search_form_for @q , url: root_path do |f|
+            .input-group
+              = f.search_field :title_cont, class: "form-control", placeholder: "Search for..."
+              span.input-group-btn
+                = f.submit class: "btn btn-secondary"
       .card.my-4
         h5.card-header
           | Categories
@@ -42,8 +42,3 @@
                 li
                   a[href="#"]
                     | Tutorials
-      .card.my-4
-        h5.card-header
-          | Side Widget
-        .card-body
-          |  You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers! 

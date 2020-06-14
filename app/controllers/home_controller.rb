@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @recruitments = Recruitment.includes([:user, :talk_room]).recent.all
+    @q = Recruitment.ransack(params[:q])
+    @recruitments = @q.result.includes([:user, :talk_room]).recent
   end
 end
