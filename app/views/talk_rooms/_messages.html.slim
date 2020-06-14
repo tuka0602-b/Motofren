@@ -1,4 +1,4 @@
-- talk_room.messages.each do |message|
+- messages.each do |message|
   - unless current_user?(message.user)
     .incoming_msg.mb-4 id="message-#{message.id}"
       .incoming_msg_img
@@ -15,4 +15,4 @@
         = simple_format(h(message.content), {}, sanitize: false)
         span.time_date
           = message.created_at
-          = link_to "削除", talk_room_message_path(talk_room, message), method: :delete, remote: true
+          = link_to "削除", talk_room_message_path(@talk_room, message), method: :delete, remote: true

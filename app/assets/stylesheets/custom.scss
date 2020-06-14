@@ -371,7 +371,7 @@ body {
 }
 
 .headind_srch {
-  padding: 10px 29px 10px 20px;
+  padding: 10px 20px;
   overflow: hidden;
   border-bottom: 1px solid #c4c4c4;
 }
@@ -557,6 +557,10 @@ body {
   &:focus {
     outline: none;
   }
+}
+
+.field_with_errors+.msg_send_btn {
+  top: 52px;
 }
 
 .messaging {

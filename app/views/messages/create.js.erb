@@ -4,5 +4,6 @@
   $("#message_content").val('');
   $(".error-list").css('display', 'none');
   $(".field_with_errors").removeClass("field_with_errors")
-  $("#messages").html("<%= escape_javascript(render('talk_rooms/messages', talk_room: @talk_room)) %>");
+  $("#messages").html("<%= escape_javascript(render('talk_rooms/messages', messages: @talk_room.messages)) %>");
+  $("#talk_users").html("<%= escape_javascript(render('talk_rooms/talk_users', users: @talk_room.users)) %>");
 <% end %>

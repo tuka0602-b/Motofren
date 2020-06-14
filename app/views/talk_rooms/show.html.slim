@@ -7,36 +7,18 @@
         .headind_srch
           .recent_heading
             h4
-              | Recent
+              | ユーザー
           .srch_bar
-            .stylish-input-group
-              input.search-bar[type="text" placeholder="Search"]
-        .inbox_chat.scroll
-          .chat_list.active_chat
-            .chat_people
-              .chat_img
-                img[src="https://ptetutorials.com/images/user-profile.png" alt="sunil"]
-              .chat_ib
-                h5
-                  | Sunil Rajput 
-                  span.chat_date
-                    | Dec 25
-                p
-                  | Test, which is a new approach to have all solutions astrology under one roof.
-          .chat_list
-            .chat_people
-              .chat_img
-                img[src="https://ptetutorials.com/images/user-profile.png" alt="sunil"]
-              .chat_ib
-                h5
-                  | Sunil Rajput 
-                  span.chat_date
-                    | Dec 25
-                p
-                  | Test, which is a new approach to have all solutions astrology under one roof.         
+            = search_form_for @q, url: talk_room_path(@talk_room) do |f|
+              .input-group
+                = f.search_field :name_cont, class: "form-control", placeholder: "Search"
+                = button_tag type: 'submit', class: "btn btn-default" do
+                  i.fas.fa-search     
+        .inbox_chat.scroll#talk_users
+          = render 'talk_users', users: @users
       .mesgs
         .msg_history#messages
-          = render 'messages', talk_room: @talk_room
+          = render 'messages', messages: @messages
         .type_msg
-          .input_msg_write.mt-3.mb-3#message_form
+          .mt-3.mb-3#message_form
             = render 'shared/message_form'
