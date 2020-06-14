@@ -14,21 +14,21 @@ RSpec.describe "Messages", type: :system do
     context "メッセージが入力されている場合" do
       it "メッセージを投稿できること" do
         expect(page).to have_content "#{recruitment.title}-room"
-        expect {
+        expect do
           fill_in "コメントを記述", with: "test message"
           find(".msg_send_btn").click
           expect(page).to have_content "test message"
-        }.to change(user.messages, :count).by(1)
+        end.to change(user.messages, :count).by(1)
       end
     end
 
     context "メッセージが無い、または255文字を超えている場合" do
       it "メッセージが投稿できないこと" do
-        expect {
+        expect do
           fill_in "コメントを記述", with: ""
           find(".msg_send_btn").click
           expect(page).to have_selector "li.error-list", text: "コメントを入力してください"
-        }.not_to change(user.messages, :count)
+        end.not_to change(user.messages, :count)
       end
     end
   end

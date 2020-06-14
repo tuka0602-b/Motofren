@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_011041) do
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content", limit: 255, null: false
+    t.text "content", null: false
     t.bigint "user_id"
     t.bigint "talk_room_id"
     t.datetime "created_at", null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_06_06_011041) do
 
   create_table "recruitments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", limit: 50, null: false
-    t.text "content", limit: 255, null: false
+    t.text "content", null: false
     t.date "date"
     t.string "picture"
     t.bigint "user_id"
