@@ -18,10 +18,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             .dropdown-menu aria-labelledby="dropdown"
               = link_to "プロフィール", current_user, class: "dropdown-item"
               = link_to "アカウント設定", edit_user_registration_path, class: "dropdown-item"
-              = link_to "フォロワー", "#", class: "dropdown-item"
               = link_to "ログアウト", destroy_user_session_path, method: "delete", class: "dropdown-item"
-          form.form-inline.my-2.my-md-0
-            input.form-control type="text" placeholder="Search" aria-label="Search"
         - else
           li.nav-item.mr-2
             = link_to "会員登録", new_user_registration_path, class: "btn btn-light"
