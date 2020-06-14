@@ -17,7 +17,7 @@ RSpec.describe TalkRoom, type: :model do
     end
 
     it "ルーム名が50文字を超えている" do
-      talk_room.name = "a" * 51
+      talk_room.name = "a" * 56
       expect(talk_room).not_to be_valid
     end
 

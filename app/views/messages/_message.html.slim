@@ -1,21 +1,17 @@
 - unless current_user?(message.user)
-  li.chat-left
-    .chat-avatar
+  .incoming_msg.mb-4
+    .incoming_msg_img
       = gravatar_for(message.user, size: 45)
-      .chat-name
-        = message.user.name
-    .chat-text
-      = message.content
-    .chat-hour
-      = message.created_at
--else
-  li.chat-right
-    .chat-hour
-      = message.created_at
-      span= link_to "削除", talk_room_message_path(@talk_room, message), method: :delete
-    .chat-text
-      = message.content
-    .chat-avatar
-      = gravatar_for(message.user, size: 45)
-      .chat-name
-        = message.user.name
+      .text-muted.user_name= message.user.name
+    .received_msg
+      .received_withd_msg
+        = simple_format(h(message.content), {}, sanitize: false)
+        span.time_date
+          = message.created_at
+- else
+  .outgoing_msg
+    .sent_msg
+      = simple_format(h(message.content), {}, sanitize: false)
+      span.time_date
+        = message.created_at
+        = link_to "削除", talk_room_message_path(@talk_room, message), method: :delete, remote: true

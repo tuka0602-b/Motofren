@@ -1,0 +1,8 @@
+<% if @message.errors.any? %>
+  $("#message_form").html("<%= escape_javascript(render('shared/message_form')) %>")
+<% else %>
+  $("#message_content").val('');
+  $(".error-list").css('display', 'none');
+  $(".field_with_errors").removeClass("field_with_errors")
+  $("#messages").html("<%= escape_javascript(render('talk_rooms/messages', talk_room: @talk_room)) %>");
+<% end %>

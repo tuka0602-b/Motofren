@@ -1,0 +1,18 @@
+- talk_room.messages.each do |message|
+  - unless current_user?(message.user)
+    .incoming_msg.mb-4 id="message-#{message.id}"
+      .incoming_msg_img
+        = gravatar_for(message.user, size: 45)
+        .text-muted.user_name= message.user.name
+      .received_msg
+        .received_withd_msg
+          = simple_format(h(message.content), {}, sanitize: false)
+          span.time_date
+            = message.created_at
+  - else
+    .outgoing_msg id="message-#{message.id}"
+      .sent_msg
+        = simple_format(h(message.content), {}, sanitize: false)
+        span.time_date
+          = message.created_at
+          = link_to "削除", talk_room_message_path(talk_room, message), method: :delete, remote: true

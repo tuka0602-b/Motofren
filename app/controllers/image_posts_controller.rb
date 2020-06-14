@@ -4,7 +4,7 @@ class ImagePostsController < ApplicationController
   def show
     @image_post = ImagePost.includes(comments: [:user]).find(params[:id])
     @user = @image_post.user
-    @comment = Comment.new
+    @comment = current_user.comments.build
   end
 
   def create

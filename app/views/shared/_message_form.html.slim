@@ -1,5 +1,6 @@
-= form_for([@talk_room, @message]) do |f|
+= form_for([@talk_room, @message], remote: true) do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
-    = f.text_area :content, class: "form-control", rows: 3, placeholder: "コメントを記述"
-  = f.submit "コメントする", class: "btn btn-info"
+    = f.text_area :content, class: "form-control", rows: 2, placeholder: "コメントを記述"
+  = button_tag type: 'submit', class: 'button msg_send_btn' do
+    i.fa.fa-paper-plane
