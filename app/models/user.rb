@@ -21,6 +21,12 @@ class User < ApplicationRecord
   has_many :recruitment_likes, dependent: :destroy
   has_many :liked_recruitments, through: :recruitment_likes, source: :recruitment
   has_many :messages, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification',
+                                  foreign_key: 'visitor_id',
+                                  dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification',
+                                   foreign_key: 'visited_id',
+                                   dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }

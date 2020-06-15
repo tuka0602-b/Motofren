@@ -4,6 +4,7 @@ class Recruitment < ApplicationRecord
   has_one :talk_room, dependent: :destroy
   has_many :recruitment_likes, dependent: :destroy
   has_many :liked_users, through: :recruitment_likes, source: :user
+  has_many :notifications, dependent: :destroy
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 255 }
