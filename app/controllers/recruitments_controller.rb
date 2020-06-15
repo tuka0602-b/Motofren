@@ -32,7 +32,6 @@ class RecruitmentsController < ApplicationController
   end
 
   def liked_users
-    @title = "いいね！したユーザー"
     @recruitment = Recruitment.find(params[:id])
     @user = @recruitment.user
     @users = @recruitment.liked_users.page(params[:page])

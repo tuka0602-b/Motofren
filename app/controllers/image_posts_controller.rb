@@ -25,7 +25,6 @@ class ImagePostsController < ApplicationController
   end
 
   def liked_users
-    @title = "いいね！したユーザー"
     @image_post = ImagePost.find(params[:id])
     @user = @image_post.user
     @users = @image_post.liked_users.page(params[:page])
