@@ -2,7 +2,7 @@ class ImagePostLikesController < ApplicationController
   def create
     @image_post = ImagePost.find(params[:image_post_id])
     current_user.image_like(@image_post)
-    @image_post.create_notification_like(current_user)
+    @image_post.create_like_notification(current_user)
   end
 
   def destroy

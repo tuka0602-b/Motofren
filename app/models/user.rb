@@ -21,11 +21,11 @@ class User < ApplicationRecord
   has_many :recruitment_likes, dependent: :destroy
   has_many :liked_recruitments, through: :recruitment_likes, source: :recruitment
   has_many :messages, dependent: :destroy
-  has_many :active_notifications, class_name: 'Notification',
-                                  foreign_key: 'visitor_id',
+  has_many :active_notifications, class_name: "Notification",
+                                  foreign_key: "visitor_id",
                                   dependent: :destroy
-  has_many :passive_notifications, class_name: 'Notification',
-                                   foreign_key: 'visited_id',
+  has_many :passive_notifications, class_name: "Notification",
+                                   foreign_key: "visited_id",
                                    dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
@@ -95,16 +95,16 @@ class User < ApplicationRecord
     liked_recruitments.include?(recruitment)
   end
 
-  def create_notification_follow(current_user)
-    temp = Notification.where(
-      "visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'
+  def create_follow_notification(current_user)
+    temp = passive_notifications.where(
+      "visitor_id = ? and action = ?", current_user.id, 'follow'
     )
     if temp.blank?
       notification = current_user.active_notifications.build(
         visited_id: id,
         action: 'follow'
       )
-      notification.save
+      notification.save if notification.valid?
     end
   end
 end
