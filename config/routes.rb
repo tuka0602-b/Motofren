@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   resources :talk_rooms, only: [:show] do
     resources :messages, only: [:create, :destroy]
   end
+  resources :notifications, only: :index
 end
