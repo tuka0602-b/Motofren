@@ -13,9 +13,9 @@ class ImagePost < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
   def create_notification_like(current_user)
-    temp = notification.where(
+    temp = Notification.where(
       "visitor_id = ? and visited_id = ? and image_post_id = ? and action = ?",
-      current_user.id, user.id, id, like
+      current_user.id, user.id, id, 'like'
     )
     if temp.blank?
       notification = current_user.active_notifications.build(
@@ -30,7 +30,7 @@ class ImagePost < ApplicationRecord
     end
   end
 
-  def create_notification_commment(current_user, comment_id)
+  def create_notification_comment(current_user, comment_id)
     temp_ids = Comment.select(:user_id).
       where(image_post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
@@ -39,7 +39,7 @@ class ImagePost < ApplicationRecord
     save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
   end
 
-  def save_notification_comment!
+  def save_notification_comment!(current_user, comment_id, visited_id)
     notification = current_user.active_notifications.build(
       image_post_id: id,
       comment_id: comment_id,

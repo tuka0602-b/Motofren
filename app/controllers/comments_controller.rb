@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @comment.image_post_id = @image_post.id
     @comment.save
+    @image_post.create_notification_comment(current_user, @comment.id)
     # N+1回避　create.js.erb側の実装で, comments/commentパーシャルを上手く返すこと出来ないか?
     @image_post.comments << @comment
   end
