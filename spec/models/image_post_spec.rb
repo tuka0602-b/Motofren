@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ImagePost, type: :model do
   let(:user) { create(:user) }
-  let(:image_post) { build(:image_post, user_id: user.id) }
+  let(:image_post) { build(:image_post, user: user) }
 
   context "画像投稿が有効になるとき" do
     it "ユーザーid、画像がある" do
@@ -38,5 +38,13 @@ RSpec.describe ImagePost, type: :model do
     image_post.save
     user.image_like(image_post)
     expect { image_post.destroy }.to change(user.image_post_likes, :count).by(-1)
+  end
+
+  it "画像投稿を削除すると関連するいいね！通知も削除されること" do
+    other_user = create(:user)
+    image_post.save
+    create(:notification,
+           visitor: other_user, visited: image_post.user, image_post: image_post, action: 'like')
+    expect { image_post.destroy }.to change(Notification, :count).by(-1)
   end
 end

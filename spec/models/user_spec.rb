@@ -98,6 +98,13 @@ RSpec.describe User, type: :model do
     expect { other_user.destroy }.to change(user.following, :count).by(-1)
   end
 
+  it "ユーザーを削除すると関連するフォロワーも削除されること" do
+    user.save
+    other_user = create(:user)
+    user.follow(other_user)
+    expect { user.destroy }.to change(other_user.followers, :count).by(-1)
+  end
+
   it "ユーザーを削除すると関連する画像投稿いいね！も削除されること" do
     user.save
     user.image_like(image_post)
@@ -129,6 +136,13 @@ RSpec.describe User, type: :model do
     user.save
     user.recruitment_likes.create!(recruitment: recruitment)
     expect { user.destroy }.to change(RecruitmentLike, :count).by(-1)
+  end
+
+  it "ユーザーを削除すると関連する通知も削除されること" do
+    other_user = create(:user)
+    user.save
+    create(:notification, visitor: user, visited: other_user)
+    expect { user.destroy }.to change(Notification, :count).by(-1)
   end
 
   it "フォロー・アンフォローができること" do
