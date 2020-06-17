@@ -11,13 +11,13 @@
       - case notification.action
       - when 'follow' then
         = "あなたをフォローしました"
-      - when 'image_like' then
+      - when 'image_post_like' then
         = link_to 'あなたの投稿', notification.image_post, style: "font-weight: bold;"
         = "にいいねしました"
-      - when 'recruit_like' then
+      - when 'recruitment_like' then
         = link_to 'あなたの募集', notification.recruitment.talk_room, style: "font-weight: bold;"
         = "にいいねしました"
-      - when 'comment' then
+      - when 'image_post_comment' then
         - if notification.image_post.user_id == visited.id
           = link_to "あなたの投稿", notification.image_post, style: "font-weight: bold;"
         - else
@@ -30,7 +30,7 @@
         p.text-muted.mb-0
           = notification.comment&.content
       
-      - when 'message' then
+      - when 'recruitment_comment' then
         - if notification.recruitment.user_id == visited.id
           = link_to "あなたの募集ルーム", notification.recruitment.talk_room, style: "font-weight: bold;"
         - else
