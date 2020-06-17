@@ -13,6 +13,45 @@ class Recruitment < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
 
+  def create_like_notification(current_user)
+    temp = notifications.where(
+      "visitor_id = ? and visited_id = ? and action = ?",
+      current_user.id, user.id, 'recruit_like'
+    )
+    if temp.blank?
+      notification = current_user.active_notifications.build(
+        recruitment_id: id,
+        visited_id: user_id,
+        action: 'recruit_like'
+      )
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
+  def create_comment_notification(current_user, comment_id)
+    temp_ids = talk_room.messages.select(:user_id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_comment_notification(current_user, comment_id, temp_id['user_id'])
+    end
+    save_comment_notification(current_user, comment_id, user_id) if temp_ids.blank?
+  end
+
+  def save_comment_notification(current_user, comment_id, visited_id)
+    notification = current_user.active_notifications.build(
+      recruitment_id: id,
+      message_id: comment_id,
+      visited_id: visited_id,
+      action: 'message'
+    )
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+  end
+
   private
 
   def create_talk_room

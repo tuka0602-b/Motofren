@@ -11,8 +11,11 @@
       - case notification.action
       - when 'follow' then
         = "あなたをフォローしました"
-      - when 'like' then
+      - when 'image_like' then
         = link_to 'あなたの投稿', notification.image_post, style: "font-weight: bold;"
+        = "にいいねしました"
+      - when 'recruit_like' then
+        = link_to 'あなたの募集', notification.recruitment.talk_room, style: "font-weight: bold;"
         = "にいいねしました"
       - when 'comment' then
         - if notification.image_post.user_id == visited.id
@@ -26,6 +29,19 @@
         = "にコメントしました"
         p.text-muted.mb-0
           = notification.comment&.content
+      
+      - when 'message' then
+        - if notification.recruitment.user_id == visited.id
+          = link_to "あなたの募集ルーム", notification.recruitment.talk_room, style: "font-weight: bold;"
+        - else
+          span
+            = link_to talk_room_path(notification.recruitment.talk_room) do
+              = gravatar_for(visitor, size: 35)
+              strong
+                = notification.recruitment.user.name + 'さんの募集ルーム'
+        = "にコメントしました"
+        p.text-muted.mb-0
+          = notification.message&.content
 
   .small.text-muted.text-right
     = time_ago_in_words(notification.created_at).upcase

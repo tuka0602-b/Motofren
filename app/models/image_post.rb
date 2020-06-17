@@ -15,13 +15,13 @@ class ImagePost < ApplicationRecord
   def create_like_notification(current_user)
     temp = notifications.where(
       "visitor_id = ? and visited_id = ? and action = ?",
-      current_user.id, user.id, 'like'
+      current_user.id, user.id, 'image_like'
     )
     if temp.blank?
       notification = current_user.active_notifications.build(
         image_post_id: id,
         visited_id: user_id,
-        action: 'like'
+        action: 'image_like'
       )
       if notification.visitor_id == notification.visited_id
         notification.checked = true
