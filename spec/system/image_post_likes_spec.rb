@@ -13,7 +13,8 @@ RSpec.describe "ImagePostLikes", type: :system do
       find(".like-button").click
       expect do
         expect(page).to have_css ".unlike-button"
-      end.to change(user.liked_image_posts, :count).by(1)
+      end.to change(user.liked_image_posts, :count).by(1).
+        and change(image_post.notifications, :count).by(1)
 
       # いいね！したユーザー一覧ページ
       click_on "1 いいね！"

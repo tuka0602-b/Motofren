@@ -13,7 +13,8 @@ RSpec.describe "Relationships", type: :system do
         click_on "フォローする"
         expect(page).to have_selector "input[value$='フォロー中']"
         expect(page).to have_content "1フォロワー"
-      end.to change(user.following, :count).by(1)
+      end.to change(user.following, :count).by(1).
+        and change(other_user.passive_notifications, :count).by(1)
 
       # フォロワー一覧ページ
       click_on "1フォロワー"

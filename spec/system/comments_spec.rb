@@ -20,7 +20,8 @@ RSpec.describe "Comments", type: :system do
           click_button "コメントする"
           expect(page).to have_selector "span", text: "test comment"
           expect(page).to have_selector "textarea#comment_content", text: ""
-        end.to change(user.comments, :count).by(1)
+        end.to change(user.comments, :count).by(1).
+          and change(Notification, :count).by(1)
       end
     end
 

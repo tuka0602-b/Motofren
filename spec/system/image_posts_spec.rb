@@ -13,22 +13,28 @@ RSpec.describe "ImagePosts", type: :system do
     context "画像が選択されているとき" do
       it "画像投稿が出来ること" do
         attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
-        click_button "投稿"
-        expect(page).to have_content "画像を投稿しました。"
-        expect(page).to have_selector "img[src$='sky.png']"
+        expect do
+          click_button "投稿"
+          expect(page).to have_content "画像を投稿しました。"
+          expect(page).to have_selector "img[src$='sky.png']"
+        end.to change(user.image_posts, :count).by(1)
       end
     end
 
     context "画像が選択されていない、投稿内容が140文字を超えているとき" do
       it "画像投稿が出来ないこと" do
-        click_button "投稿"
-        expect(page).to have_selector "li.error-list", text: "画像を選択してください"
-        expect(page).not_to have_selector "img[src$='sky.png']"
+        expect do
+          click_button "投稿"
+          expect(page).to have_selector "li.error-list", text: "画像を選択してください"
+          expect(page).not_to have_selector "img[src$='sky.png']"
+        end.not_to change(user.image_posts, :count)
 
-        attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
-        fill_in "コメント", with: "a" * 141
-        click_button "投稿"
-        expect(page).to have_selector "li.error-list", text: "コメントは140文字以内で入力してください"
+        expect do
+          attach_file "image_post[picture]", "#{Rails.root}/spec/fixtures/sky.png"
+          fill_in "コメント", with: "a" * 141
+          click_button "投稿"
+          expect(page).to have_selector "li.error-list", text: "コメントは140文字以内で入力してください"
+        end.not_to change(user.image_posts, :count)
       end
     end
   end

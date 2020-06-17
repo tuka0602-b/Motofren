@@ -21,7 +21,8 @@ RSpec.describe "Messages", type: :system do
           fill_in "コメントを記述", with: "test message"
           find(".msg_send_btn").click
           expect(page).to have_content "test message"
-        end.to change(user.messages, :count).by(1)
+        end.to change(user.messages, :count).by(1).
+          and change(Notification, :count).by(1)
       end
     end
 
