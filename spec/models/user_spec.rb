@@ -142,7 +142,7 @@ RSpec.describe User, type: :model do
     other_user = create(:user)
     user.save
     create(:notification, visitor: user, visited: other_user)
-    expect { user.destroy }.to change(Notification, :count).by(-1)
+    expect { user.destroy }.to change(other_user.passive_notifications, :count).by(-1)
   end
 
   it "フォロー・アンフォローができること" do

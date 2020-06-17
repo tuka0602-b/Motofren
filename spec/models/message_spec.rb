@@ -32,4 +32,14 @@ RSpec.describe Message, type: :model do
       expect(message).not_to be_valid
     end
   end
+
+  it "コメントが削除されると関連する通知も削除されること" do
+    other_user = create(:user)
+    recruitment = talk_room.recruitment
+    message.save
+    create(:notification,
+           visitor: other_user, visited: recruitment.user,
+           recruitment: recruitment, message: message, action: 'recruitment_comment')
+    expect { message.destroy }.to change(message.notifications, :count).by(-1)
+  end
 end

@@ -60,4 +60,13 @@ RSpec.describe Recruitment, type: :model do
     user.recruitment_likes.create!(recruitment: recruitment)
     expect { recruitment.destroy }.to change(RecruitmentLike, :count).by(-1)
   end
+
+  it "募集が削除されると関連するいいね！通知も削除されること" do
+    other_user = create(:user)
+    recruitment.save
+    create(:notification,
+           visitor: other_user, visited: recruitment.user,
+           recruitment: recruitment, action: 'recruitment_like')
+    expect { recruitment.destroy }.to change(recruitment.notifications, :count).by(-1)
+  end
 end

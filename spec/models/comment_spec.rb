@@ -38,7 +38,7 @@ RSpec.describe Comment, type: :model do
     comment.save
     create(:notification,
            visitor: other_user, visited: image_post.user,
-           image_post: image_post, comment: comment, action: 'comment')
-    expect { comment.destroy }.to change(Notification, :count).by(-1)
+           image_post: image_post, comment: comment, action: 'image_post_comment')
+    expect { comment.destroy }.to change(comment.notifications, :count).by(-1)
   end
 end

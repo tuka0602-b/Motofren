@@ -44,7 +44,8 @@ RSpec.describe ImagePost, type: :model do
     other_user = create(:user)
     image_post.save
     create(:notification,
-           visitor: other_user, visited: image_post.user, image_post: image_post, action: 'like')
-    expect { image_post.destroy }.to change(Notification, :count).by(-1)
+           visitor: other_user, visited: image_post.user,
+           image_post: image_post, action: 'image_post_like')
+    expect { image_post.destroy }.to change(image_post.notifications, :count).by(-1)
   end
 end

@@ -7,42 +7,7 @@
         = gravatar_for(visitor, size: 35)
         strong= visitor.name
       | さんが
-
-      - case notification.action
-      - when 'follow' then
-        = "あなたをフォローしました"
-      - when 'image_post_like' then
-        = link_to 'あなたの投稿', notification.image_post, style: "font-weight: bold;"
-        = "にいいねしました"
-      - when 'recruitment_like' then
-        = link_to 'あなたの募集', notification.recruitment.talk_room, style: "font-weight: bold;"
-        = "にいいねしました"
-      - when 'image_post_comment' then
-        - if notification.image_post.user_id == visited.id
-          = link_to "あなたの投稿", notification.image_post, style: "font-weight: bold;"
-        - else
-          span
-            = link_to image_post_path(notification.image_post) do
-              = gravatar_for(visitor, size: 35)
-              strong
-                = notification.image_post.user.name + 'さんの投稿'
-        = "にコメントしました"
-        p.text-muted.mb-0
-          = notification.comment&.content
-      
-      - when 'recruitment_comment' then
-        - if notification.recruitment.user_id == visited.id
-          = link_to "あなたの募集ルーム", notification.recruitment.talk_room, style: "font-weight: bold;"
-        - else
-          span
-            = link_to talk_room_path(notification.recruitment.talk_room) do
-              = gravatar_for(visitor, size: 35)
-              strong
-                = notification.recruitment.user.name + 'さんの募集ルーム'
-        = "にコメントしました"
-        p.text-muted.mb-0
-          = notification.message&.content
-
+      = render partial: 'notifications/action', locals: { visitor: visitor, visited: visited, notification: notification}
   .small.text-muted.text-right
     = time_ago_in_words(notification.created_at).upcase
   hr
