@@ -3,16 +3,16 @@
     .incoming_msg.mb-4 id="message-#{message.id}"
       .incoming_msg_img
         = gravatar_for(message.user, size: 45)
-        .text-muted.user_name= message.user.name
+        .text-muted.text-center.user_name= message.user.name
       .received_msg
         .received_withd_msg
           = simple_format(h(message.content), {}, sanitize: false)
           span.time_date
-            = message.created_at
+            = "#{time_ago_in_words(message.created_at).upcase} 前"
   - else
     .outgoing_msg id="message-#{message.id}"
       .sent_msg
         = simple_format(h(message.content), {}, sanitize: false)
         span.time_date
-          = message.created_at
-          = link_to "削除", talk_room_message_path(@talk_room, message), method: :delete, remote: true
+          = "#{time_ago_in_words(message.created_at).upcase} 前"
+          = link_to "削除", talk_room_message_path(@talk_room, message), method: :delete, remote: true, class: "ml-4"

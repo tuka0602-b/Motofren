@@ -18,7 +18,7 @@ RSpec.describe "Comments", type: :system do
         expect do
           fill_in "コメントを記述", with: "test comment"
           click_button "コメントする"
-          expect(page).to have_selector "span", text: "test comment"
+          expect(page).to have_selector "p", text: "test comment"
           expect(page).to have_selector "textarea#comment_content", text: ""
         end.to change(user.comments, :count).by(1).
           and change(Notification, :count).by(1)
@@ -48,8 +48,8 @@ RSpec.describe "Comments", type: :system do
 
       it "削除できること" do
         expect do
-          click_link "delete"
-          expect(page).not_to have_selector "span", text: "test comment2"
+          find('.cmt-delete').click
+          expect(page).not_to have_selector "p", text: "test comment2"
         end.to change(user.comments, :count).by(-1)
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe "Comments", type: :system do
       let(:login_user) { create(:user, name: "other_user") }
 
       it "削除リンクが表示されないこと" do
-        expect(page).not_to have_selector "a", text: "delete"
+        expect(page).not_to have_selector "a", text: "削除"
       end
     end
   end

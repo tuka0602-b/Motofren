@@ -1,7 +1,11 @@
-li.media.mb-3 id="comment-#{comment.id}"
-  = gravatar_for(comment.user, size: 35)
-  .media-body.align-self-center
-    span.ml-1.text-muted= comment.user.name
-    span.ml-2= comment.content
-    - if current_user?(comment.user)
-      span.ml-4= link_to "delete", image_post_comment_path(comment.image_post, comment), method: :delete, remote: true, class: "text-muted"
+li.incoming_msg.mb-4 id="comment-#{comment.id}"
+  .incoming_msg_cmt
+    = gravatar_for(comment.user, size: 38)
+    .text-muted.text-center.user_name= comment.user.name
+  .received_msg
+    .received_withd_msg.ml-2
+      = simple_format(h(comment.content), {}, sanitize: false)
+      span.time_date
+        = "#{time_ago_in_words(comment.created_at).upcase} 前"
+        - if current_user?(comment.user)
+          span.ml-4.cmt-delete= link_to "削除", image_post_comment_path(comment.image_post, comment), method: :delete, remote: true, class: "text-muted"

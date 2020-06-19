@@ -1,7 +1,11 @@
 p.card-text.mt-2
-  = "エリア : #{recruitment.area.prefecture}"
+  span.mr-1.mini
+    | エリア :
+  = recruitment.area.prefecture
 p.card-text.mt-2
-  = "実施日 : #{recruitment.date}"
+  span.mr-1.mini
+    | 実施日 :
+  = recruitment.date
 .card-text-area.mt-1.overflow-auto
   .card-text.mb-3
     = simple_format(h(recruitment.content), {}, sanitize: false, wrapper_tag: "div")

@@ -363,6 +363,14 @@ body {
   }
 }
 
+.incoming_msg_cmt {
+  display: inline-block;
+  width: 8%;
+  .user_name {
+    font-size: 11px;
+  }
+}
+
 .comment-area {
   max-height: 430px;
   @media(max-width: 1200px) {
@@ -622,4 +630,9 @@ body {
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
+}
+
+////////////////////// RECRUITMENT ///////////////////////////
+.mini {
+  font-size: 13px;
 }
