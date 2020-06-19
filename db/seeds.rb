@@ -19,7 +19,7 @@ end
 
 # 画像投稿
 users = User.order(:created_at).take(6)
-13.times do |n|
+16.times do |n|
   users.each do |user|
     user.image_posts.create!(
       picture: File.open("./public/images/photo#{n+1}.JPG"),
