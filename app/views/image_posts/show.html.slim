@@ -16,4 +16,4 @@
           | コメント一覧
         ul.list-unstyled#comments
           - if @image_post.comments.any?
-            = render 'comments', image_post: @image_post
+            = render @comments

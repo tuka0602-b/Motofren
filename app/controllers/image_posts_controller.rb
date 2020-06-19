@@ -2,7 +2,8 @@ class ImagePostsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def show
-    @image_post = ImagePost.includes(comments: [:user]).find(params[:id])
+    @image_post = ImagePost.find(params[:id])
+    @comments = @image_post.comments.includes(:user).recent
     @user = @image_post.user
     @comment = current_user.comments.build
   end
