@@ -15,9 +15,7 @@ hr.m-0
         = render @image_posts
       .page-load-status.text-center.text-muted
         .infinite-scroll-request
-          | Loading...
+          | ...
           = paginate @image_posts
         p.infinite-scroll-last
           | end of contents
-        p.infinite-scroll-error
-          | No more pages to load

@@ -2,9 +2,7 @@
   = render users
 .page-load-status.col-md-10.text-right.text-muted
   .infinite-scroll-request
-    | Loading...
+    | ...
     = paginate users
   p.infinite-scroll-last
     | end of contents
-  p.infinite-scroll-error
-    | No more pages to load
