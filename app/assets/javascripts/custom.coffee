@@ -14,3 +14,11 @@ $(document).on 'turbolinks:load', ->
     prefill: true
     status: '.page-load-status'
     hideNav: '.pagination'
+
+  $('#recruitments').infiniteScroll
+    path: "nav.pagination a[rel=next]"
+    append: ".recruitment"
+    history: false
+    prefill: true
+    status: '.page-load-status'
+    hideNav: '.pagination'

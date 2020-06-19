@@ -4,7 +4,14 @@
     .col-md-7
       h3.my-4
         | 募集一覧
-      = render @recruitments
+      #recruitments
+        = render @recruitments
+      .page-load-status.text-center.text-muted
+        .infinite-scroll-request
+          | ...
+          = paginate @recruitments
+        p.infinite-scroll-last
+          | end of contents
       
     .col-md-4
       .card.my-4
@@ -14,7 +21,7 @@
           = search_form_for @q , url: root_path do |f|
             .form-group
               = f.label :title_cont, "タイトル"
-              = f.search_field :title_cont, class: "form-control", placeholder: "Search for..."
+              = f.search_field :title_cont, class: "form-control", placeholder: "キーワード"
               span.input-group-btn
             .form-group
               = f.label :area_id_eq, "エリア"
