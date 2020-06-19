@@ -34,7 +34,7 @@ class RecruitmentsController < ApplicationController
   def liked_users
     @recruitment = Recruitment.find(params[:id])
     @user = @recruitment.user
-    @users = @recruitment.liked_users.page(params[:page])
+    @users = @recruitment.liked_users.page(params[:page]).per(20)
   end
 
   private

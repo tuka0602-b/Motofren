@@ -28,7 +28,7 @@ class ImagePostsController < ApplicationController
   def liked_users
     @image_post = ImagePost.find(params[:id])
     @user = @image_post.user
-    @users = @image_post.liked_users.page(params[:page])
+    @users = @image_post.liked_users.page(params[:page]).per(20)
   end
 
   private

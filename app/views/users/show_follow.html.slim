@@ -2,7 +2,7 @@
 .container
   h3.text-muted.mt-2= @title
   .row.mt-3
-    .col-md-4
+    .col-md-5
       .followers-box.full-width
         .followers-list
           .followers-body
@@ -18,5 +18,4 @@
                   = @user.followers.count
                   | フォロワー
     - if @users.any?
-      .col-md-8.col-lg-offset-2
-        = render @users
+      = render 'shared/users', users: @users

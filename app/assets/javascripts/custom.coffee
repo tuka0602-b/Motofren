@@ -6,3 +6,11 @@ $(document).on 'turbolinks:load', ->
     prefill: true
     status: '.page-load-status'
     hideNav: '.pagination'
+
+  $('#users').infiniteScroll
+    path: "nav.pagination a[rel=next]"
+    append: ".user"
+    history: false
+    prefill: true
+    status: '.page-load-status'
+    hideNav: '.pagination'

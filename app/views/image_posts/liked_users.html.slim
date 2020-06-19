@@ -12,5 +12,4 @@
               ul.post-meta.list-inline
                 = render 'image_posts/status', user: @user, image_post: @image_post
     - if @users.any?
-      .col-md-7.col-lg-offset-2
-        = render @users
+      = render 'shared/users', users: @users

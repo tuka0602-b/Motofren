@@ -24,5 +24,4 @@
               = link_to @recruitment.user.name, @recruitment.user, class: "text-muted"
               span.ml-1= gravatar_for(@recruitment.user, size: 40)
     - if @users.any?
-      .col-md-7.col-lg-offset-2
-        = render @users
+      = render 'shared/users', users: @users

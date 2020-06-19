@@ -1,4 +1,4 @@
-.followers-box.full-width
+.followers-box.full-width.user
   .followers-list
     .followers-body
       = gravatar_for(user, size: 40)
@@ -14,8 +14,3 @@
           p.mb-0
             = user.followers.count
             | フォロワー
-      / span
-      /   - if current_user.following?(user)
-      /     = render 'unfollow', user: user
-      /   - else
-      /     = render 'follow', user: user
