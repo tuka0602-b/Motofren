@@ -90,6 +90,7 @@ RSpec.describe "Devise::Users", type: :system do
 
         click_dropdown
         click_link "ログアウト"
+        # 編集したメールアドレス、パスワードでログインできること
         fill_in "メールアドレス", with: "userhoge@example.com"
         fill_in "パスワード", with: "hogehoge"
         click_button "ログイン"
@@ -137,7 +138,7 @@ RSpec.describe "Devise::Users", type: :system do
       expect(page).to have_content "ゲストユーザーとしてログインしました。"
       expect(page).to have_current_path root_path
 
-      # ゲストユーザーは削除できない
+      # ゲストユーザーは削除できないこと
       click_dropdown
       click_link "アカウント設定"
       click_link "はい"
