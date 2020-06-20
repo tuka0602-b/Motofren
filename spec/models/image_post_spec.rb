@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ImagePost, type: :model do
+  include CarrierWave::Test::Matchers
   let(:user) { create(:user) }
   let(:image_post) { build(:image_post, user: user) }
 
@@ -26,6 +27,12 @@ RSpec.describe ImagePost, type: :model do
       image_post.content = "a" * 141
       expect(image_post).not_to be_valid
     end
+  end
+
+  it "画像は900 x 600にリサイズされること" do
+    image_path = File.join(Rails.root, 'spec/fixtures/bike.JPG')
+    image_post.picture = File.open(image_path)
+    expect(image_post.picture).to have_dimensions(900, 600)
   end
 
   it "画像投稿を削除すると関連するコメントも削除されること" do

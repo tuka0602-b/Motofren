@@ -77,6 +77,7 @@ RSpec.describe "Devise::Users", type: :system do
       fill_in "パスワード", with: password
       fill_in "パスワード（確認用）", with: password
       fill_in "自己紹介", with: "テスト用の自己紹介です！"
+      attach_file "user[picture]", "#{Rails.root}/spec/fixtures/sky.png"
       click_button "更新"
     end
 
@@ -97,8 +98,9 @@ RSpec.describe "Devise::Users", type: :system do
         expect(page).to have_selector "strong", text: "ログインしました。"
 
         click_dropdown
-        click_link "アカウント設定"
+        click_link "プロフィール"
         expect(page).to have_content "テスト用の自己紹介です！"
+        expect(page).to have_selector "img[src$='sky.png']"
       end
     end
 

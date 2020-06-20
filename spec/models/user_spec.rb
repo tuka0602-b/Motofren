@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  include CarrierWave::Test::Matchers
   let(:user) { build(:user) }
   let(:image_post) { create(:image_post) }
 
@@ -83,11 +84,16 @@ RSpec.describe User, type: :model do
     expect(user.email).to eq user.reload.email
   end
 
+  it "プロフ画像は110 x 110にリサイズされること" do
+    image_path = File.join(Rails.root, 'spec/fixtures/sky.png')
+    user.picture = File.open(image_path)
+    expect(user.picture).to have_dimensions(110, 110)
+  end
+
   it "ユーザーを削除すると関連する画像投稿も削除されること" do
     user.save
-    user.image_posts.create!(picture: Rack::Test::UploadedFile.new(
-      File.join(Rails.root, 'spec/fixtures/sky.png'), 'image/png'
-    ))
+    image_path = File.join(Rails.root, 'spec/fixtures/sky.png')
+    user.image_posts.create!(picture: File.open(image_path))
     expect { user.destroy }.to change(ImagePost, :count).by(-1)
   end
 

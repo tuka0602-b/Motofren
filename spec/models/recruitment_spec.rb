@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Recruitment, type: :model do
+  include CarrierWave::Test::Matchers
   let(:user) { create(:user) }
   let(:area) { create(:area) }
   let(:recruitment) { build(:recruitment, user: user, area: area) }
@@ -41,6 +42,12 @@ RSpec.describe Recruitment, type: :model do
       recruitment.area_id = nil
       expect(recruitment).not_to be_valid
     end
+  end
+
+  it "画像は900 x 600にリサイズされること" do
+    image_path = File.join(Rails.root, 'spec/fixtures/bike.JPG')
+    recruitment.picture = File.open(image_path)
+    expect(recruitment.picture).to have_dimensions(900, 600)
   end
 
   it "募集が保存されるとトークルームが作成されること" do
