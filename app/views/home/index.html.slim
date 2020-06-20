@@ -18,15 +18,4 @@
         h5.card-header
           | 検索
         .card-body
-          = search_form_for @q , url: root_path do |f|
-            .form-group
-              = f.label :title_cont, "タイトル"
-              = f.search_field :title_cont, class: "form-control", placeholder: "キーワード"
-              span.input-group-btn
-            .form-group
-              = f.label :area_id_eq, "エリア"
-              = f.collection_select :area_id_eq, Area.all, :id, :prefecture, { include_blank: "指定なし" }, { class: 'form-control', size: 5 }
-            .form-group
-              = f.label :date_gteq, "実施日"
-              = f.date_field :date_gteq, class: 'form-control'
-            = f.submit class: "btn btn-dark btn-block"
+          = render 'search_form', q: @q
