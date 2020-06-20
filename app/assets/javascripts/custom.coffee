@@ -22,3 +22,11 @@ $(document).on 'turbolinks:load', ->
     prefill: true
     status: '.page-load-status'
     hideNav: '.pagination'
+
+  $('#notifications').infiniteScroll
+    path: "nav.pagination a[rel=next]"
+    append: ".notification"
+    history: false
+    prefill: true
+    status: '.page-load-status'
+    hideNav: '.pagination'

@@ -1,7 +1,13 @@
 .container
   - if @notifications.exists?
-    = render @notifications
-    = paginate @notifications
+    .row#notifications
+      = render @notifications
+    .page-load-status.text-center.text-muted
+      .infinite-scroll-request
+        | ...
+        = paginate @notifications
+      p.infinite-scroll-last
+        | end of contents
   - else
     p
       | 通知はありません

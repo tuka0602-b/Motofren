@@ -9,6 +9,14 @@ body {
   list-style: none;
 }
 
+.mini {
+  font-size: 13px;
+}
+
+.font-md {
+  font-size: 18px;
+}
+
 /////////////////// HEADER //////////////////////
 .sitelogo {
   max-width: 175px;
@@ -641,9 +649,4 @@ body {
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
-}
-
-////////////////////// RECRUITMENT ///////////////////////////
-.mini {
-  font-size: 13px;
 }

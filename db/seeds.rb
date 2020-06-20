@@ -64,7 +64,7 @@ prefectures.each { | prefecture | Area.create!(prefecture: prefecture) }
 # 募集投稿
 users = User.order(:created_at).take(6)
 area = Area.first
-3.times do |n|
+2.times do |n|
   users.each do |user|
     user.recruitments.create!(
       title: "バイク好きな人！#{n}",

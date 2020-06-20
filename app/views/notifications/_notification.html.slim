@@ -1,14 +1,14 @@
 - visitor = notification.visitor
 - visited = notification.visited
-.col-md-7.mx-auto.mt-4
+.col-md-8.mx-auto.mt-4.notification
   .row.align-items-center
     .col-md-1
-      = gravatar_for(visitor, size: 35)
+      = gravatar_for(visitor, size: 40)
     .col-md-9
       .form-inline
         span
           = link_to user_path(visitor) do
-            strong.text-muted= visitor.name
+            strong.text-muted.font-md= visitor.name
           | さんが
           = render partial: 'notifications/action', locals: { visitor: visitor, visited: visited, notification: notification}
     .col-md-2.d-flex.align-self-end
