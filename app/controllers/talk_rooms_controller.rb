@@ -5,7 +5,7 @@ class TalkRoomsController < ApplicationController
     @users = @q.result(distinct: true)
     @messages = Message.where(
       "user_id IN (?) AND talk_room_id = ?", @users.ids, @talk_room.id
-    ).includes(:user)
+    ).includes(:user).recent
     @message = current_user.messages.build
   end
 end

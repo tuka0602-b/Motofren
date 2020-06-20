@@ -5,4 +5,5 @@ class Message < ApplicationRecord
   validates :user_id, presence: true
   validates :talk_room_id, presence: true
   validates :content, presence: true, length: { maximum: 255 }
+  scope :recent, -> { order(created_at: :desc) }
 end
