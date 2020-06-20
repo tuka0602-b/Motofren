@@ -369,10 +369,17 @@ body {
 
 .incoming_msg_cmt {
   display: inline-block;
-  width: 8%;
+  width: 12%;
   .user_name {
     font-size: 11px;
   }
+}
+
+.received_cmt {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 88%;
 }
 
 .comment-area {

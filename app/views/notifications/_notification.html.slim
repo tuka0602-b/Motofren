@@ -1,13 +1,17 @@
 - visitor = notification.visitor
 - visited = notification.visited
-.col-md-6.mx-auto
-  .form-inline
-    span
-      = link_to user_path(visitor) do
-        = gravatar_for(visitor, size: 35)
-        strong= visitor.name
-      | さんが
-      = render partial: 'notifications/action', locals: { visitor: visitor, visited: visited, notification: notification}
-  .small.text-muted.text-right
-    = "#{time_ago_in_words(notification.created_at).upcase} 前"
+.col-md-7.mx-auto.mt-4
+  .row.align-items-center
+    .col-md-1
+      = gravatar_for(visitor, size: 35)
+    .col-md-9
+      .form-inline
+        span
+          = link_to user_path(visitor) do
+            strong.text-muted= visitor.name
+          | さんが
+          = render partial: 'notifications/action', locals: { visitor: visitor, visited: visited, notification: notification}
+    .col-md-2.d-flex.align-self-end
+      .small.text-muted
+        = "#{time_ago_in_words(notification.created_at).upcase} 前"
   hr

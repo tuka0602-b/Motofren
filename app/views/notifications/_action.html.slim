@@ -2,14 +2,14 @@
 - when 'follow'
   = "あなたをフォローしました"
 - when 'image_post_like'
-  = link_to 'あなたの投稿', notification.image_post, style: "font-weight: bold;"
+  = link_to 'あなたの投稿', notification.image_post, class: "text-muted", style: "font-weight: bold;"
   = "にいいねしました"
 - when 'recruitment_like'
-  = link_to 'あなたの募集', notification.recruitment.talk_room, style: "font-weight: bold;"
+  = link_to 'あなたの募集', notification.recruitment.talk_room, class: "text-muted", style: "font-weight: bold;"
   = "にいいねしました"
 - when 'image_post_comment'
   - if notification.image_post.user_id == visited.id
-    = link_to "あなたの投稿", notification.image_post, style: "font-weight: bold;"
+    = link_to "あなたの投稿", notification.image_post, class: "text-muted", style: "font-weight: bold;"
   - else
     span
       = link_to image_post_path(notification.image_post) do
@@ -21,7 +21,7 @@
     = notification.comment&.content
 - when 'recruitment_comment'
   - if notification.recruitment.user_id == visited.id
-    = link_to "あなたの募集ルーム", notification.recruitment.talk_room, style: "font-weight: bold;"
+    = link_to "あなたの募集ルーム", notification.recruitment.talk_room, class: "text-muted", style: "font-weight: bold;"
   - else
     span
       = link_to talk_room_path(notification.recruitment.talk_room) do

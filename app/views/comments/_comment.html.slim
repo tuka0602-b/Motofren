@@ -1,9 +1,9 @@
 li.incoming_msg.mb-4 id="comment-#{comment.id}"
-  .incoming_msg_cmt
+  .incoming_msg_cmt.text-center
     = gravatar_for(comment.user, size: 38)
-    .text-muted.text-center.user_name= comment.user.name
-  .received_msg
-    .received_withd_msg.ml-2
+    .text-muted.user_name= comment.user.name
+  .received_cmt
+    .received_withd_msg
       = simple_format(h(comment.content), {}, sanitize: false)
       span.time_date
         = "#{time_ago_in_words(comment.created_at).upcase} 前"

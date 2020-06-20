@@ -1,6 +1,7 @@
-- if @notifications.exists?
-  = render @notifications
-  = paginate @notifications
-- else
-  p
-    | 通知はありません
+.container
+  - if @notifications.exists?
+    = render @notifications
+    = paginate @notifications
+  - else
+    p
+      | 通知はありません
