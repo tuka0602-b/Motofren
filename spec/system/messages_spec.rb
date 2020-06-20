@@ -27,7 +27,7 @@ RSpec.describe "Messages", type: :system do
     end
 
     context "メッセージが無い、または255文字を超えている場合" do
-      it "メッセージが投稿できないこと" do
+      it "メッセージを投稿できないこと" do
         expect do
           fill_in "コメントを記述", with: ""
           find(".msg_send_btn").click

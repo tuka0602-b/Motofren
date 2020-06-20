@@ -8,7 +8,7 @@ User.create!(name:  "Example User",
 99.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@railstutorial.org"
-introduction = Faker::Lorem.sentence(word_count: 5)
+introduction = Faker::Lorem.sentence(word_count: 15)
 password = "password"
 User.create!(name:  name,
     email: email,
@@ -23,7 +23,7 @@ users = User.order(:created_at).take(6)
   users.each do |user|
     user.image_posts.create!(
       picture: File.open("./public/images/photo#{n+1}.JPG"),
-      content: Faker::Lorem.sentence(word_count: 5)
+      content: Faker::Lorem.sentence(word_count: 15)
     )
   end
 end
@@ -64,11 +64,11 @@ prefectures.each { | prefecture | Area.create!(prefecture: prefecture) }
 # 募集投稿
 users = User.order(:created_at).take(6)
 area = Area.first
-2.times do |n|
+3.times do |n|
   users.each do |user|
     user.recruitments.create!(
-      title: "テスト募集#{n}",
-      content: Faker::Lorem.sentence(word_count: 5),
+      title: "バイク好きな人！#{n}",
+      content: Faker::Lorem.sentence(word_count: 15),
       picture: File.open("./public/images/photo#{n+1}.JPG"),
       area: area,
       date: Date.today
@@ -80,7 +80,7 @@ end
 user = User.first
 talk_room = TalkRoom.first
 10.times do
-  user.messages.create!(talk_room: talk_room, content: Faker::Lorem.sentence(word_count: 5))
+  user.messages.create!(talk_room: talk_room, content: Faker::Lorem.sentence(word_count: 10))
 end
 
 # 募集いいね！
