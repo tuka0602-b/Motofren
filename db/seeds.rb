@@ -5,10 +5,19 @@ User.create!(name:  "Example User",
   password:              "foobar",
   password_confirmation: "foobar")
 
+# ゲストユーザー
+User.create!(
+  name: 'UserGuest',
+  email: 'guest@example.com',
+  introduction: "カワサキのW650とかクラシック系のバイクが特に好きです",
+  password: "password",
+  password_confirmation: "password"
+)
+
 99.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@railstutorial.org"
-introduction = Faker::Lorem.sentence(word_count: 15)
+introduction = Faker::Lorem.sentence(word_count: 10)
 password = "password"
 User.create!(name:  name,
     email: email,
@@ -23,7 +32,7 @@ users = User.order(:created_at).take(6)
   users.each do |user|
     user.image_posts.create!(
       picture: File.open("./public/images/photo#{n+1}.JPG"),
-      content: Faker::Lorem.sentence(word_count: 15)
+      content: Faker::Lorem.sentence(word_count: 10)
     )
   end
 end
