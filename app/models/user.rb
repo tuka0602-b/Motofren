@@ -30,6 +30,9 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }
+  validate :picture_size
+  PICTURE_SIZE = [100, 100].freeze
+  mount_uploader :picture, PictureUploader
 
   def self.from_omniauth(auth)
     # Omniauth認証するたびに認証先ユーザー情報（名前など）が取得される。
@@ -105,6 +108,14 @@ class User < ApplicationRecord
         action: 'follow'
       )
       notification.save if notification.valid?
+    end
+  end
+
+  private
+
+  def picture_size
+    if picture.size > 2.megabytes
+      errors.add(:picture, "画像は2MB未満にしてください")
     end
   end
 end

@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_06_15_143955) do
     t.string "uid"
     t.string "name", default: "", null: false
     t.text "introduction", limit: 255
+    t.string "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

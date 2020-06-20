@@ -13,6 +13,7 @@ class Recruitment < ApplicationRecord
   validate :picture_size
   after_create :create_talk_room
   scope :recent, -> { order(created_at: :desc) }
+  PICTURE_SIZE = [900, 600].freeze
   mount_uploader :picture, PictureUploader
 
   private

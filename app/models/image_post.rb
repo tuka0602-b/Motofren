@@ -12,6 +12,7 @@ class ImagePost < ApplicationRecord
   validates :content, length: { maximum: 140 }
   validate :picture_size
   scope :recent, -> { order(created_at: :desc) }
+  PICTURE_SIZE = [900, 600].freeze
   mount_uploader :picture, PictureUploader
 
   private

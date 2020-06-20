@@ -24,6 +24,8 @@
           = f.label :introduction
           = f.text_area :introduction, autofocus: true, autocomplete: 'introduction', rows: 6, class: 'form-control'
         .form-group
+          = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+        .form-group
           = f.submit t('.update'), class: 'btn btn-dark'
       p
         | アカウントを削除されますか？
