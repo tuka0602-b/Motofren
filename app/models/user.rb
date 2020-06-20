@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 }
   validates :introduction, length: { maximum: 200 }
   validate :picture_size
-  PICTURE_SIZE = [100, 100].freeze
+  PICTURE_SIZE = [110, 110].freeze
   mount_uploader :picture, PictureUploader
 
   def self.from_omniauth(auth)

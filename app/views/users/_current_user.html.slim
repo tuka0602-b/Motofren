@@ -4,7 +4,7 @@
       = gravatar_for(user)
       .col-md-8.col-lg-6.col-xl-5.p-0.mx-auto
         h4.font-weight-bold.my-4
-          = user.name
+          = link_to user.name, edit_user_registration_path, class: "text-dark"
         .text-muted.mb-4
           = user.introduction
   .col-md-5.col-sm-6.align-self-center
