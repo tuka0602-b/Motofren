@@ -25,6 +25,11 @@ body {
   height: 100%;
 }
 
+//////////////////// FOOTER //////////////////////
+.bg-dark-footer {
+  background-color: rgb(24, 28, 33)
+}
+
 //////////////////// INDEX ////////////////////////
 .masthead {
   height: 100vh;
@@ -80,7 +85,7 @@ body {
 
 .login,
 .image {
-  min-height: 100vh;
+  min-height: 88vh;
 }
 
 .login-image {
