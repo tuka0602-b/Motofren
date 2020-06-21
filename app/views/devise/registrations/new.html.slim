@@ -9,4 +9,8 @@
             .col-md-9.col-lg-8.mx-auto
               h3.login-heading.mb-4
                 | Welcome!
+                button[type="button" class="btn btn-link text-muted" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="top"
+                  style="font-size: 13px;"
+                  data-content="募集型投稿アプリです。募集を作成し、ルーム上で他のユーザーとやりとりが行えます。プロフィールでは好きな画像の投稿も可能です。"]
+                  | MotoFrenとは？
               = render 'signup_form'

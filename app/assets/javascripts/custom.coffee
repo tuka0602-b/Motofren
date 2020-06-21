@@ -1,4 +1,8 @@
 $(document).on 'turbolinks:load', ->
+  $('[data-toggle="popover"]').popover
+    container: 'body'
+    trigger: 'focus'
+
   $('#image_posts').infiniteScroll
     path: "nav.pagination a[rel=next]"
     append: ".image_post"
